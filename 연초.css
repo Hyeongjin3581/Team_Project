@@ -9,9 +9,6 @@ a{
 }
 li{ list-style-type: none;} /* li 항목 글머리 제거 */
 
-* {
-    border: red solid 1px;
-}
 
 #wrap {
     width: 1280px;
