@@ -32,10 +32,7 @@ let memberTable = [
     { MemberID: 40002, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/src/img/' },
     { MemberID: 40005, userID: 'wEqweqw232', userPW: '12341234', userNAME: '베인', userPHOTO: '/src/img/' },
 ]
-
 // 6.  JS 메모리 샘플 데이터
-
-
 
 // 커뮤니티 기능
 function 게시글작성(){}
