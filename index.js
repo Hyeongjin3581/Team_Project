@@ -32,3 +32,37 @@ let memberTable = [
     { MemberID: 40002, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/src/img/' },
     { MemberID: 40005, userID: 'wEqweqw232', userPW: '12341234', userNAME: '베인', userPHOTO: '/src/img/' },
 ]
+// 6.  JS 메모리 샘플 데이터
+
+// 상단 메뉴 클릭 시 각 카테고리/페이지로 이동
+function 연초페이지이동(카테고리) {}
+function 릴페이지이동(카테고리) {}
+function 아이코스페이지이동(카테고리) {}
+function 담배브랜드페이지이동() {}
+function 커뮤니티페이지이동() {}
+
+// 카테고리별 제품 조회 및 필터링
+function 제품목록조회(카테고리) {}
+function 제품상세보기(제품ID) {}
+function 제품별점조회(제품ID) {}
+function 제품검색(검색어) {}
+
+// 커뮤페이지 
+function 오늘의핫글(게시글ID){}
+function 게시물보기(게시글ID){}
+function 게시물작성(게시글ID) {}
+function 게시물삭제(회원고유ID) {}
+function 게시물수정(회원고유ID) {}
+
+// 커뮤상세 페이지 투표 반응
+function 추천(게시글ID) {}
+function 비추천(게시글ID) {}
+function 댓글남기기(회원고유ID){}
+
+// 담배브랜드 페이지
+
+function 브랜드목록조회(브랜드ID){}
+function 인기브랜드목록(담배ID){}
+
+function 초성필터링(){}
+function 초성별제품조회(){}
