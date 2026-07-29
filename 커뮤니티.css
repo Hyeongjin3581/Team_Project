@@ -1,0 +1,165 @@
+*{
+    border : 1px solid red;
+    box-sizing: content-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.wrap{
+    width: 1280px;
+}
+
+.header1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: black;
+    padding: 10px 60px 10px 60px;
+}
+
+.header1>#imgBox{
+    height: 60px;
+    margin-left: 60px;
+}
+
+#imgBox>a>img{
+    height: 60px;
+}
+
+#mainMenu{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#mainMenu>li{
+
+    margin: 0px 50px 0px 50px;;
+}
+
+#mainMenu>li>a{
+    color: white;
+    font-weight: lighter;
+    font-size: 28px;
+}
+
+#searchBox{
+    position: relative;
+    margin-right: 60px;
+}
+#searchBox>input{
+    height: 25px;
+    width: 170px;
+}
+
+#searchBox>img{
+    position: absolute;
+    right: 7px;
+    width: 15px;
+    height: 15px;
+    bottom: 6px;
+}
+.header2{
+    margin: 0px 30px 0px 30px;
+}
+.header2>ul{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+
+.header2>ul>li{
+    margin: 10px;
+    color: black;
+}
+.auth-menu{
+    display: flex;
+}
+
+.header2>ul>li>a {
+    margin: 10px;
+    color: black;
+}
+
+#h1{
+    font-size: 60px;
+    font-weight: bold;
+}
+#h2{
+    margin: 20px 10px 40px 10px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+
+/*==== mainbody====*/
+.mainbody{
+    
+}
+
+.main1{
+    display: flex;
+    justify-content: flex-start;
+    width: 1280px;
+    height: 500px;
+}
+
+.main1>#imgPepe{
+    margin-left: 30px;
+}
+
+/*==id Writing==*/
+.pepe{
+    border: 1px solid black;
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+.hot{
+    font-size: 40px;
+    font-weight: bold;
+}
+.t{
+    font-size: 20px;
+    width: 800px;
+}
+.plus{
+    display: inline;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/*==id RD==*/
+#RD{
+    width: 100px;
+}
+
+.up{
+    width: 50px;
+    height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+.main2{
+    width: 1280px;
+    height:  300px;
+}
+
+
+
