@@ -1,10 +1,14 @@
 console.log("hi")
 
 let reviewTable = [
-    { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '필만해요', score: 4 },
-    { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2 },
-    { reviewID: 20002, cigarID: 50005, memberID: 40005, review: '노맛', score: 1 },
-    { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1 }
+    { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '필만해요', score: 4, listDay: '2026-07-01' },
+    { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
+    { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20006, cigarID: 50001, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20007, cigarID: 50003, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
 ]
 
 let brandTable = [
@@ -16,10 +20,10 @@ let brandTable = [
 ]
 
 let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '에쎄 히말라야', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'/src/img'},
-    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 3mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: '/src/img' },
-    { cigarID: 50002, brandID: 10001, cigarName: '말보로 레드', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: '/src/img' },
-    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: '/src/img' }
+    { cigarID: 50000, brandID: 10002, cigarName: '에쎄 히말라야', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
+    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 3mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
+    { cigarID: 50002, brandID: 10001, cigarName: '말보로 레드', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
+    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' }
 ]
 
 let listTable = [
@@ -32,37 +36,63 @@ let memberTable = [
     { MemberID: 40002, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/src/img/' },
     { MemberID: 40005, userID: 'wEqweqw232', userPW: '12341234', userNAME: '베인', userPHOTO: '/src/img/' },
 ]
-// 6.  JS 메모리 샘플 데이터
 
-// 상단 메뉴 클릭 시 각 카테고리/페이지로 이동
-function 연초페이지이동(카테고리) {}
-function 릴페이지이동(카테고리) {}
-function 아이코스페이지이동(카테고리) {}
-function 담배브랜드페이지이동() {}
-function 커뮤니티페이지이동() {}
 
-// 카테고리별 제품 조회 및 필터링
-function 제품목록조회(카테고리) {}
-function 제품상세보기(제품ID) {}
-function 제품별점조회(제품ID) {}
-function 제품검색(검색어) {}
 
-// 커뮤페이지 
-function 오늘의핫글(게시글ID){}
-function 게시물보기(게시글ID){}
-function 게시물작성(게시글ID) {}
-function 게시물삭제(회원고유ID) {}
-function 게시물수정(회원고유ID) {}
+// 최근 리뷰에 맞는 html 생성 코드
+showRecentReview()
+function showRecentReview(){
+    let html = ``;
+    let recentReviews = document.querySelector('.recentReviews')
 
-// 커뮤상세 페이지 투표 반응
-function 추천(게시글ID) {}
-function 비추천(게시글ID) {}
-function 댓글남기기(회원고유ID){}
+    // 새 변수에 날짜가 가장 최근 것이 먼저 오도록 정렬한 테이블
+    let recentReviewTable = reviewTable.sort((a, b) => new Date(b.listDay) - new Date(a.listDay))
 
-// 담배브랜드 페이지
+    // 1. 리뷰테이블에서 cigarID를 갖고옴
+    // 2. cigarID를 통해 cigarTable에서 찾음
+    // 3. 찾은 cigarTable의 배열에서 cigarImg를 갖고옴
 
-function 브랜드목록조회(브랜드ID){}
-function 인기브랜드목록(담배ID){}
 
-function 초성필터링(){}
-function 초성별제품조회(){}
+    const today = new Date()
+    console.log(recentReviewTable)
+    html += `<div class="recentReview">`
+
+    for (index = 0; index < 4; index++){
+
+        let id = recentReviewTable[index].cigarID
+        let review = recentReviewTable[index].review
+        let cigar = cigarTable.find(cigar => cigar.cigarID == id)
+        console.log(cigar)
+
+        html += `
+        <div class="cigarItem">
+            <img src="${cigar.cigarImg}">
+                <p>빈 별: &star;</p>
+                <p>${review}</p>
+        </div>`
+    }
+
+    html += `
+    </div>
+    <div class="recentReview">
+    `
+
+    for (index = 4; index < 8; index++){
+        let id = recentReviewTable[index].cigarID
+        let review = recentReviewTable[index].review
+        let cigar = cigarTable.find(cigar => cigar.cigarID === id)
+        
+
+        html += `
+        <div class="cigarItem">
+            <img src="${cigar.cigarImg}">
+                <p>빈 별: &star;</p>
+                <p>${review}</p>
+        </div>`
+    }
+
+    html += `</div>`
+
+    recentReviews.innerHTML = html
+    return
+}
