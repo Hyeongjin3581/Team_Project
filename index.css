@@ -1,0 +1,33 @@
+li{
+    list-style-type: none;
+}
+.recentReview{
+    display: flex;
+}
+
+.cigarItem{
+    text-align: center;
+    width: 12%;
+    margin: 30px;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.cigarItem > img{
+    width: 80%;
+    height: 50%;
+    object-fit: contain;
+}
+
+.cigarRank{
+    position: fixed;
+    top: 30%;
+    right: 3%;
+    width: 20%;
+    height: 40%;
+}
+
+.cigarRank > ul {
+    padding: 0px;
+}
