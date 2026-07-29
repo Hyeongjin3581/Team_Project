@@ -1,0 +1,59 @@
+/* 자주 사용되는 기본css */
+*{
+    box-sizing: border-box;  /* content+padding 포함 사이즈 정의 */
+    padding: 0px; margin: 0px; /* 기본 여백 제거 */
+}
+a{
+    text-decoration: none;  /* 하이퍼링크 밑줄 제거 */
+    color: black; /* 하이퍼링크 색상 결정 */
+}
+li{ list-style-type: none;} /* li 항목 글머리 제거 */
+
+
+#wrap {
+    width: 1280px;
+    
+}
+
+#header {
+    height: 100px;
+}
+
+#main {
+    display: flex;
+    background-color: #EEFBFF;
+    flex-wrap: wrap;
+}
+
+#box {
+    display: flex;
+}
+
+#content {
+    display: flex;
+    width: 500px;
+    height: 200px;
+    margin: 50px 0 0 50px;
+    background-color: #e9e9e9;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#content p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+#content h3 {
+    font-size: 30px;
+}
+
+#star {
+    text-align: center;
+}
+
+#review {
+    width: 400px;
+    height: 200px;
+    margin: 50px;
+    background-color: #e9e9e9;
+}
