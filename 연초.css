@@ -198,3 +198,42 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 #bottom img {
     width: 20px;
 }
+
+
+/* ========== rank ============ */
+
+.Rank{
+    position: fixed;
+    top: 30%;
+    right: 3%;
+    width: 20%;
+    height: 40%;
+    background-color: #e9e9e9;
+    text-align: center;
+}
+
+.selectRank{
+    display: flex;
+    justify-content: space-between;
+    margin: 4%;
+    border-bottom: 1px solid darkgray;
+}
+.selectRank > button{
+    border: 0;
+    background-color: #e9e9e9;
+}
+#rankBtn:focus {
+    border-bottom: 2px solid black;
+}
+.Rank ul {
+    position: absolute;
+    padding: 0px;
+}
+.entireRank{
+    display: none;
+}
+
+.Rank ul > li{
+    font-size: 20px;
+    padding: 5px;
+}
