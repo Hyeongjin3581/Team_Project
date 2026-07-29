@@ -20,6 +20,29 @@ li{
     object-fit: contain;
 }
 
+.newItem{
+    display: flex;
+}
+
+.recenItem > div{
+    text-align: end;
+}
+
+.recentItem{
+    text-align: center;
+    width: 12%;
+    margin: 30px;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.recentItem > img{
+    width: 80%;
+    height: 50%;
+    object-fit: contain;
+}
+
 .Rank{
     position: fixed;
     top: 30%;
