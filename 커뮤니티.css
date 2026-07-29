@@ -1,5 +1,5 @@
 *{
-    border : 1px solid red;
+    /* border : 1px solid red; */
     box-sizing: content-box;
     margin: 0px;
     padding: 0px;
@@ -94,71 +94,163 @@ a {
     font-size: 60px;
     font-weight: bold;
 }
-#h2{
-    margin: 20px 10px 40px 10px;
+
+
+#h2-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px 20px 10px;
+}
+
+#h2 {
     color: rgba(0, 0, 0, 0.4);
 }
 
-
-/*==== mainbody====*/
-.mainbody{
-    
+.btn-group {
+    margin-right: 15px;
+    display: flex;
+    gap: 10px;
 }
 
-.main1{
+.btn-group button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+/*==== mainbody ====*/
+.mainbody {
+    width: 1280px;
+}
+
+.main1 {
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
     width: 1280px;
-    height: 500px;
+    padding: 0 30px;
 }
 
-.main1>#imgPepe{
-    margin-left: 30px;
-}
-
-/*==id Writing==*/
-.pepe{
-    border: 1px solid black;
-    border-radius: 100%;
-    width: 150px;
-    height: 150px;
+.main1 > #imgPepe {
     margin-right: 20px;
 }
-.hot{
-    font-size: 40px;
+
+.pepe {
+    border: 1px solid black;
+    border-radius: 100%;
+    width: 130px;
+    height: 130px;
+}
+
+#Writing {
+    max-width: 800px;
+}
+
+.hot {
+    font-size: 36px;
     font-weight: bold;
 }
-.t{
-    font-size: 20px;
-    width: 800px;
+
+.t {
+    font-size: 18px;
+    line-height: 1.4;
 }
-.plus{
+
+.plus {
     display: inline;
     color: rgba(0, 0, 0, 0.4);
 }
 
-/*==id RD==*/
-#RD{
+#RD {
     width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 15px; 
+    margin-top: 8dvb;
 }
 
-.up{
-    width: 50px;
-    height: 30px;
+.up, .down {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
+.up > img, .down > img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
 
+/*==== main2 (게시물 보기 목록) ====*/
+.main2 {
+    margin-top: 150px;
+    padding: 0 30px 50px 30px;
+}
 
+.list-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    padding: 4px 0;
+}
 
+.item-left {
+    display: flex;
+    gap: 8px;
+}
 
+.item-left .title {
+    font-weight: bold;
+    cursor: pointer;
+}
 
+.item-left .reply {
+    color: red;
+    font-weight: bold;
+}
 
+.item-right {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
 
-.main2{
-    width: 1280px;
-    height:  300px;
+.item-right .like {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.item-right .like img {
+    width: 16px;
+    height: 16px;
+}
+
+.item-right .user {
+    width: 100px;
 }
 
 
