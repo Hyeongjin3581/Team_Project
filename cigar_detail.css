@@ -1,0 +1,226 @@
+@font-face {
+    font-family: 'HannaPro';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+* {
+    /* border : 1px solid red; */
+    box-sizing: content-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'HannaPro';
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* ==========================[header start]============================================================================== */
+.header {}
+
+.header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: #090909;
+    padding: 10px 60px 10px 60px;
+}
+
+.header1>#imgBox {
+    height: 60px;
+    margin-left: 60px;
+}
+
+#imgBox>a>img {
+    height: 60px;
+}
+
+#mainMenu {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#mainMenu>li {
+
+    margin: 0px 50px 0px 50px;
+}
+
+#mainMenu>li>a {
+    color: white;
+    font-weight: lighter;
+    font-size: 28px;
+}
+
+#searchBox {
+    position: relative;
+    margin-right: 60px;
+}
+
+#searchBox>input {
+    height: 25px;
+    width: 170px;
+}
+
+#searchBox>img {
+    position: absolute;
+    right: 7px;
+    width: 15px;
+    height: 15px;
+    bottom: 6px;
+}
+
+.header2 {
+    margin: 0px 30px 0px 30px;
+}
+
+.header2>ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+.header2>ul>li {
+    margin: 10px;
+    color: #090909;
+}
+
+.header2>ul>li>a {
+    margin: 10px;
+    color: #090909;
+}
+
+/* ==========================[header end]============================================================================== */
+
+/* ==========================[content end]============================================================================== */
+
+.content{
+    margin: 0px 30px 0px 30px;
+}
+.cigarInfo{
+    display: flex;
+    margin-top: 50px;
+}
+
+.imgBox{
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 450px;
+    margin-left: 150px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    line-height: 450px;
+}
+
+.imgBox>img{
+
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+}
+
+.cigarDetailInfo{
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+.cigarName{
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.cigarBrand{
+    margin-bottom: 20px;
+    color: gray;
+}
+
+.cigarPrice{
+    margin: 20px 0px 20px 0px;
+    font-size: 24px;
+    color: #bf0606;
+}
+
+.wishList>a{
+    margin: 40px 0px 0px 0px;
+    color: #ff0000;
+    font-weight: bold;
+}
+.cigarRating{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.cigarScore{
+    padding: 10px;
+    /* margin-left: 100px; */
+    width: 600px;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.cigarScore>span{
+    font-size: 20px;
+}
+
+.cigarScore>div>.reviewTable>tr{
+    display: flex;
+    justify-content: space-around;
+}
+
+.reviewTable, tr, td{
+    border: 1px solid black;
+    background-color: #D9D9D9;
+}
+.reviewText{
+    min-width: 500px;
+}
+
+.reviewScore{
+    padding: 10px;
+}
+.reviewWrite{
+    min-width: 470px;
+    position: relative;
+}
+
+.reviewWrite>div{
+    text-align: center;
+}
+
+.reviewWrite>.title{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.buttonArea{
+    display: flex;
+    justify-content: flex-end;
+}
+.inputArea{
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+}
+.inputArea>textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+.buttonArea>button{
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+}

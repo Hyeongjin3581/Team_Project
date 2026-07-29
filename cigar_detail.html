@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>상세 정보</title>
+    <link rel='stylesheet' href='cigar_detail.css'>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="header1">
+                <div id="imgBox">
+                    <a href="#">
+                        <img src='/img/main_logo.png' , alt="로고">
+                    </a>
+                </div>
+                <ul id="mainMenu">
+                    <li><a href="#">연초</a></li>
+                    <li><a href="#">릴</a></li>
+                    <li><a href="#">아이코스</a></li>
+                    <li><a href="#">담배 브랜드</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                </ul>
+                <div id="searchBox">
+                    <input>
+                    <img src="/img/icon_search.png" alt="돋보기이미지">
+                </div>
+            </div>
+            <div class="header2">
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li>회원가입</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="cigarInfo">
+                <div class="imgBox">
+                    <img src="./src/cigar.png">
+                </div>
+                <div class="cigarDetailInfo">
+                    <div class="cigarName">
+                        <h2>보헴 시가 아이스핏</h2>
+                    </div>
+                    <div class="cigarBrand">[보헴]</div>
+                    <div class="tar">타르 함량: 0.1mg</div>
+                    <div class="nicotine">니코틴 함량: 0.1mg</div>
+                    <div class="cigarPrice">가격 4,500원</div>
+                    <div class="wishList"><a href="#">[관심등록]</a></div>
+                </div>
+            </div>
+            <div class="cigarRating">
+                <div class="cigarScore">
+                    <span>평균 평점  ☆ 4.0</span>
+                    <br><br>
+                    <div>
+                        <table class="reviewTable">
+                            <tr><td class="reviewText">아주 필만해요</td><td class="reviewScore">★4.0</td></tr>
+                            <tr><td class="reviewText">아주 필만해요</td><td class="reviewScore">★4.0</td></tr>
+                            <tr><td class="reviewText">아주 필만해요</td><td class="reviewScore">★4.0</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="reviewWrite">
+                    <div class="title">리뷰 작성</div>
+                    <div class="inputArea">
+                        <textarea></textarea>
+                    </div>
+                    <div class="buttonArea">
+                        <button type="button" onclick="addReview()">리뷰등록</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="cigar_detail.js"></script>
+</body>
+</html>
