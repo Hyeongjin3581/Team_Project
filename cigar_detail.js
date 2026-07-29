@@ -42,11 +42,37 @@ function printDetail (){
     let url = new URLSearchParams( location.search )
     console.log(url)
     let cigarID = url.get( 'cigarID' )
+    console.log(cigarID)
 
-    let reviewList = localStorage.getItem( 'reviewList' )
-    if( reviewList == null){
-        reviewList = []
-    } else{
-        reviewList = JSON.parse( reviewList )
+    // let reviewList = localStorage.getItem( 'reviewList' )
+    // if( reviewList == null){
+    //     reviewList = []
+    // } else{
+    //     reviewList = JSON.parse( reviewList )
+    // }
+    
+    for(let i = 0; i <= cigarTable.length - 1; i++){
+        if(cigarID == cigarTable[i].cigarID){
+            let price = cigarTable[i].price.toLocaleString()
+            document.querySelector('.cigarName > h2').innerHTML = `${cigarTable[i].cigarName}`
+            document.querySelector('.tar').innerHTML = `타르 함량: ${cigarTable[i].tar}mg`
+            document.querySelector('.nicotine').innerHTML = `니코틴 함량: ${cigarTable[i].nicotine}mg`
+            document.querySelector('.cigarPrice').innerHTML = `가격 ${price}원`
+        }
     }
+
+    let score = 0;
+    let reviewCount = 0;
+    let html = ``
+    for(let i = 0; i <= reviewTable.length - 1; i++){
+       if (cigarID == reviewTable[i].cigarID) {
+            score += reviewTable[i].score
+            reviewCount++;
+            html += `<tr><td class="reviewText">${reviewTable[i].review}</td><td class="reviewScore">★ ${reviewTable[i].score}</td></tr>`
+       } 
+    }
+    score = score / reviewCount;
+    document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  ☆ ${score}/5`
+    document.querySelector('.reviewTable').innerHTML = html
 }
+
