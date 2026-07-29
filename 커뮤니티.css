@@ -14,6 +14,10 @@ a {
     color: black;
 }
 
+.wrap{
+    width: 1280px;
+}
+
 .header1{
     display: flex;
     align-items: center;
@@ -87,42 +91,74 @@ a {
 }
 
 #h1{
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
 }
 #h2{
-    margin: 10px;
+    margin: 20px 10px 40px 10px;
     color: rgba(0, 0, 0, 0.4);
 }
 
-.mainbody1{
+
+/*==== mainbody====*/
+.mainbody{
+    
 }
 
 .main1{
     display: flex;
-    justify-content: space-between;
-    width:  1000px;
+    justify-content: flex-start;
+    width: 1280px;
     height: 500px;
-
 }
 
 .main1>#imgPepe{
     margin-left: 30px;
 }
 
+/*==id Writing==*/
 .pepe{
+    border: 1px solid black;
     border-radius: 100%;
     width: 150px;
     height: 150px;
+    margin-right: 20px;
 }
 .hot{
     font-size: 40px;
     font-weight: bold;
 }
-
+.t{
+    font-size: 20px;
+    width: 800px;
+}
 .plus{
     display: inline;
     color: rgba(0, 0, 0, 0.4);
+}
+
+/*==id RD==*/
+#RD{
+    width: 100px;
+}
+
+.up{
+    width: 50px;
+    height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+.main2{
+    width: 1280px;
+    height:  300px;
 }
 
 
