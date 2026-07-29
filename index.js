@@ -65,7 +65,7 @@ function showRecentReview(){
         console.log(cigar)
 
         html += `
-        <div class="cigarItem">
+        <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
                 <p>빈 별: &star;</p>
                 <p>${review}</p>
@@ -84,7 +84,7 @@ function showRecentReview(){
         
 
         html += `
-        <div class="cigarItem">
+        <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
                 <p>빈 별: &star;</p>
                 <p>${review}</p>
