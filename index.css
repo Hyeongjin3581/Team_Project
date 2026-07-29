@@ -20,15 +20,32 @@ li{
     object-fit: contain;
 }
 
-.cigarRank{
+.Rank{
     position: fixed;
     top: 30%;
     right: 3%;
     width: 20%;
     height: 40%;
     background-color: cadetblue;
+    text-align: center;
 }
 
-.cigarRank > ul {
+.selectRank{
+    display: flex;
+    justify-content: space-between;
+    margin: 4%;
+    border-bottom: 1px solid darkgray;
+}
+.selectRank > span{
+    border-bottom: 2px solid black;
+}
+.Rank ul {
+    
+    position: absolute;
     padding: 0px;
+}
+
+.Rank ul > li{
+    font-size: 20px;
+    padding: 5px;
 }
