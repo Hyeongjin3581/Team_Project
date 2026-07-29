@@ -1,0 +1,167 @@
+* {
+    /* border : 1px solid red; */
+    box-sizing: content-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* ==========================[header start]============================================================================== */
+.header {}
+
+.header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: black;
+    padding: 10px 60px 10px 60px;
+}
+
+.header1>#imgBox {
+    height: 60px;
+    margin-left: 60px;
+}
+
+#imgBox>a>img {
+    height: 60px;
+}
+
+#mainMenu {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#mainMenu>li {
+
+    margin: 0px 50px 0px 50px;
+    ;
+}
+
+#mainMenu>li>a {
+    color: white;
+    font-weight: lighter;
+    font-size: 28px;
+}
+
+#searchBox {
+    position: relative;
+    margin-right: 60px;
+}
+
+#searchBox>input {
+    height: 25px;
+    width: 170px;
+}
+
+#searchBox>img {
+    position: absolute;
+    right: 7px;
+    width: 15px;
+    height: 15px;
+    bottom: 6px;
+}
+
+.header2 {
+    margin: 0px 30px 0px 30px;
+}
+
+.header2>ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+.header2>ul>li {
+    margin: 10px;
+    color: black;
+}
+
+.header2>ul>li>a {
+    margin: 10px;
+    color: black;
+}
+
+/* ==========================[header end]============================================================================== */
+
+/* ==========================[content end]============================================================================== */
+
+.content{
+    margin: 0px 30px 0px 30px;
+}
+.cigarInfo{
+    display: flex;
+    margin-top: 50px;
+}
+
+.imgBox{
+    width: 450px;
+    height: 450px;
+    margin-left: 150px;
+}
+
+.cigarDetailInfo{
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+.cigarName{
+    margin-bottom: 10px;
+}
+
+.cigarBrand{
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.cigarPrice{
+    margin: 10px 0px 10px 0px;
+}
+
+.wishList{
+    margin: 40px 0px 0px 0px;
+}
+.cigarRating{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    
+
+}
+.cigarScore{
+    padding: 10px;
+    /* margin-left: 100px; */
+    width: 600px;
+}
+
+.cigarScore>div>.reviewTable>tr{
+    display: flex;
+    justify-content: space-around;
+}
+
+.reviewText{
+    min-width: 530px;
+}
+
+.reviewWrite{
+    min-width: 470px;
+}
+.inputArea{
+    width: 100%;
+    height: 200px;
+}
+.inputArea>textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
