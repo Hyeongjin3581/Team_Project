@@ -7,7 +7,7 @@ let reviewTable = [
     { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1, listDay: '2026-07-12' },
     { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
     { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20006, cigarID: 50001, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20006, cigarID: 50000, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
     { reviewID: 20007, cigarID: 50003, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
 ]
 
@@ -95,4 +95,65 @@ function showRecentReview(){
 
     recentReviews.innerHTML = html
     return
+}
+
+console.log(getScoreCigar(50000))
+function getScoreCigar(cigarID){
+    let scoreArr = reviewTable.filter(item => item.cigarID === cigarID)
+    let totalScore = 0
+    let index = 0
+    console.log(scoreArr)
+
+    for (index; index < scoreArr.length; index++){
+        totalScore += scoreArr[index].score
+    }
+    console.log(totalScore)
+    return totalScore/index
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function entireClick() {
+    document.querySelector('.cigarRank').style.display = 'none';
+    document.querySelector('.entireRank').style.display = 'block';
+
+    document.querySelector('.entireBtn').style.borderBottom = '2px solid black'
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none'
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none'
+    document.querySelector('.btn3').style.borderBottom = 'none'
+}   
+
+function click2() {
+    document.querySelector('.entireRank').style.display = 'none';
+    document.querySelector('.cigarRank').style.display = 'block';
+
+    document.querySelector('.entireBtn').style.borderBottom = 'none'
+    document.querySelector('.cigarBtn1').style.borderBottom = '2px solid black'
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none'
+    document.querySelector('.btn3').style.borderBottom = 'none'
+}
+
+function click3() {
+    document.querySelector('.entireBtn').style.borderBottom = 'none'
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none'
+    document.querySelector('.cigarBtn2').style.borderBottom = '2px solid black'
+    document.querySelector('.btn3').style.borderBottom = 'none'
+}
+
+function click4() {
+    document.querySelector('.entireBtn').style.borderBottom = 'none'
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none'
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none'
+    document.querySelector('.btn3').style.borderBottom = '2px solid black'
 }
