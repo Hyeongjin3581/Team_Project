@@ -41,17 +41,17 @@ let cigarTable = [
 
 let reviewTable = [
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
-    { reviewID: 20001, cigarID: 50001, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
-    { reviewID: 20002, cigarID: 50002, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
+    { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
     { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20004, cigarID: 50004, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20005, cigarID: 50005, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20006, cigarID: 50006, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20007, cigarID: 50007, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20008, cigarID: 50008, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
-    { reviewID: 20009, cigarID: 50009, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
-    { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
-    { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20006, cigarID: 50001, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20007, cigarID: 50003, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20008, cigarID: 50004, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
+    { reviewID: 20009, cigarID: 50006, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
+    { reviewID: 20010, cigarID: 50008, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
+    { reviewID: 20011, cigarID: 50010, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
 ]
 let memberTable = [
     { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
@@ -65,6 +65,8 @@ let memberTable = [
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/img/프사8.jpg' },
 ]
 
+
+
 function a() {
     let html =''
     for(let i = 0; i < cigarTable.length; i++){
@@ -77,13 +79,13 @@ function a() {
                             </div>
                             <div id="detail">
                                 <h3> ${cigarTable[i].cigarName}</h3>
-                                <p> ${cigarTable[i].nicotine}mg </p>
-                                <p> ${cigarTable[i].tar}mg </p>
+                                <p> 니코틴 ${cigarTable[i].nicotine}mg </p>
+                                <p> 타르 ${cigarTable[i].tar}mg </p>
                             </div>
-                            <div id="star">
+                            <div id="star${i}">
                                 <p> ★ 4.2 </p>
                                 <p> ★★★★ </p>
-                                <p> 리뷰 224개 </p>
+                                
                             </div>
                         </div>
                     </a>`
@@ -121,5 +123,21 @@ function a() {
                     
     }
     document.querySelector('#main').innerHTML = html
+    for(let r = 0; r < cigarTable.length; r++){
+        let review = 0
+        let result = 0
+        let count = 0
+        for(let m = 0; m < reviewTable.length; m++){
+            if(cigarTable[r].cigarID == reviewTable[m].cigarID){
+                review++
+                count++
+                result += reviewTable[m].score
+            }
+        }
+        result = result / count
+        let abc = `#star${r}`
+        document.querySelector(abc).innerHTML = `<p> <span class="star">★</span> ${result.toFixed(1)} </p> <p> 리뷰 ${review}개 </p> `
+        
+    }
 }
 a()
