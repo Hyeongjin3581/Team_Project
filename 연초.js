@@ -69,7 +69,7 @@ function a() {
     for(let i = 0; i < cigarTable.length; i++){
         html +=     `
                 <div class="box">
-                    <a href="#">
+                    <a href="cigar_detail.html?cigarID=${cigarTable[i].cigarID}">
                         <div class="content">
                             <div id="image">
                                 <img id="img" src="${cigarTable[i].cigarImg}">
