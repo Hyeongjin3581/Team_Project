@@ -64,7 +64,6 @@ function printDetail() {
     console.log(url)
     let cigarID = url.get('cigarID')
     console.log(cigarID)
-
     // let reviewList = localStorage.getItem( 'reviewList' )
     // if( reviewList == null){
     //     reviewList = []
@@ -72,7 +71,7 @@ function printDetail() {
     //     reviewList = JSON.parse( reviewList )
     // }
 
-    for (let i = 0; i >= cigarTable.length - 1; i++) {
+    for (let i = 0; i <= cigarTable.length - 1; i++) {
         if (cigarID == cigarTable[i].cigarID) {
             let price = cigarTable[i].price.toLocaleString()
             document.querySelector('.imgBox').innerHTML = `<img src="${cigarTable[i].cigarImg}">`
