@@ -41,7 +41,7 @@ printDetail()
 function printDetail (){
     let url = new URLSearchParams( location.search )
     console.log(url)
-    let cigarID = url.get( 'cigarID' )
+    let cigarID = parseInt(url.get( 'cigarID' ))
     console.log(cigarID)
 
     // let reviewList = localStorage.getItem( 'reviewList' )
@@ -50,8 +50,8 @@ function printDetail (){
     // } else{
     //     reviewList = JSON.parse( reviewList )
     // }
-    
-    for(let i = 0; i <= cigarTable.length - 1; i++){
+
+    for(let i = 0; i >= cigarTable.length - 1; i++){
         if(cigarID == cigarTable[i].cigarID){
             let price = cigarTable[i].price.toLocaleString()
             document.querySelector('.cigarName > h2').innerHTML = `${cigarTable[i].cigarName}`
@@ -64,15 +64,41 @@ function printDetail (){
     let score = 0;
     let reviewCount = 0;
     let html = ``
-    for(let i = 0; i <= reviewTable.length - 1; i++){
+    for (let i = reviewTable.length - 1; i >= 0; i--){
        if (cigarID == reviewTable[i].cigarID) {
             score += reviewTable[i].score
             reviewCount++;
-            html += `<tr><td class="reviewText">${reviewTable[i].review}</td><td class="reviewScore">★ ${reviewTable[i].score}</td></tr>`
+           html += `<tr><td class="reviewText">${reviewTable[i].review}</td><td class="reviewScore"><span id="star">★</span> ${reviewTable[i].score}</td></tr>`
        } 
     }
     score = score / reviewCount;
-    document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  ☆ ${score}/5`
+    document.querySelector('.warning').innerHTML = '<p style="display:none;"> 리뷰 내용을 작성하셔야 합니다. </p>'
+    document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
     document.querySelector('.reviewTable').innerHTML = html
+    document.querySelector('.inputArea > textarea').value = null;
 }
 
+function addReview() {
+    let url = new URLSearchParams(location.search)
+    let cigarID = parseInt(url.get('cigarID'))
+
+    let review = document.querySelector('.inputArea > textarea').value
+    if(review == ''){
+        document.querySelector('.warning').innerHTML = '<p style="display:relative;"> 리뷰 내용을 작성하셔야 합니다. </p>'
+        return;
+    }
+    let score = parseInt(document.querySelector('.buttonArea > .reviewScore').value)
+
+    let reviewID = reviewTable.length == 0 ? 1 : reviewTable[reviewTable.length - 1].reviewID + 1
+    
+    let year = new Date().getFullYear()
+    let month = new Date().getMonth() < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth();
+    let day = new Date().getDate()
+    let listDay = `${year}-${month}-${day}`
+
+    let object = { reviewID, cigarID, memberID: 40003, review, score, listDay }
+
+    reviewTable.push(object)
+    
+    printDetail()
+}
