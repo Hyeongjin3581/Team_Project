@@ -53,7 +53,7 @@ let reviewTable = [
     { reviewID: 20011, cigarID: 50010, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
 ]
 let memberTable = [
-    { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/src/img/' },
+    { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
     { MemberID: 40001, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/src/img/' },
     { MemberID: 40002, userID: 'wEqweqw232', userPW: '12341234', userNAME: '베인', userPHOTO: '/src/img/' },
     { MemberID: 40003, userID: 'smoker01', userPW: 'qwer1234', userNAME: '아리', userPHOTO: '/src/img/' },
@@ -88,10 +88,12 @@ function a() {
                     </a>`
                     for(let j = 0; j < reviewTable.length; j++){
                         let name
+                        let img
                         if(cigarTable[i].cigarID == reviewTable[j].cigarID){
                             for( let k = 0; k < memberTable.length; k++){
                                 if(reviewTable[j].memberID == memberTable[k].MemberID){
                                     name = memberTable[k].userNAME
+                                    img = memberTable[k].userPHOTO
                                     break;
                                 }
                             }
@@ -99,7 +101,7 @@ function a() {
                                 <div class="review">
                                     <div id="top">
                                         <div id="image2">
-                                            <img src="img/pepe.jpg">
+                                            <img src="${img}">
                                         </div>
                                         <div>
                                             ${name}
