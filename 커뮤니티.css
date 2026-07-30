@@ -60,7 +60,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 }
 
 #mainMenu>li{
-
     margin: 0px 50px 0px 40px;
 }
 
@@ -70,7 +69,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     font-size: 28px;
 }
 
-#mainMeue>li>a>.red {
+#mainMenu>li>a>.red {
     color: rgb(255, 150, 150);
 }
 
@@ -92,7 +91,8 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     bottom: 6px;
 }
 
-/*=== 기본세팅 ===*/
+/*=======기본세팅 =========*/
+/* ====== 아래부터 형진 ======*/
 
 
 
@@ -103,7 +103,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 
 .header2>ul{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-right: 50px;
 }
 
@@ -122,7 +122,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 }
 
 
-
 /* ==================== header end ================= */
 
 #h1{
@@ -130,12 +129,12 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     font-weight: bold;
 }
 
-
 #h2-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 10px 20px 10px;
+    margin: 0px 10px 0px 10px;
+    padding-bottom: 40px;
 }
 
 #h2 {
@@ -159,6 +158,9 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 
 /*==== mainbody ====*/
 
+.mainbody{
+    background-color: #EEFBFF;
+}
 
 .main1 {
     display: flex;
@@ -293,12 +295,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     width: 100px;
 }
 
-
-/* ===footer===*/
-.footer{
-    background-color: #EEFBFF;
-    height: 40px;
-}
 
 
 
