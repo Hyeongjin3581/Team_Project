@@ -22,7 +22,7 @@ let brandTable = [
 ]
 
 let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
+    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
     { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
     { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
     { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
@@ -56,72 +56,8 @@ let memberTable = [
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/src/img/' },
 ]
 
+brandPrint()
+// 담배브랜드 목록 페이지 렌더링
+function brandPrint(){
 
-printDetail()
-
-// 상세 페이지 새로고침(최신화)
-function printDetail() {
-    let url = new URLSearchParams(location.search)
-    console.log(url)
-    let cigarID = url.get('cigarID')
-    console.log(cigarID)
-    // let reviewList = localStorage.getItem( 'reviewList' )
-    // if( reviewList == null){
-    //     reviewList = []
-    // } else{
-    //     reviewList = JSON.parse( reviewList )
-    // }
-
-    for (let i = 0; i <= cigarTable.length - 1; i++) {
-        if (cigarID == cigarTable[i].cigarID) {
-            let price = cigarTable[i].price.toLocaleString()
-            document.querySelector('.imgBox').innerHTML = `<img src="${cigarTable[i].cigarImg}">`
-            document.querySelector('.cigarName > h2').innerHTML = `${cigarTable[i].cigarName}`
-            document.querySelector('.tar').innerHTML = `타르 함량: ${cigarTable[i].tar}mg`
-            document.querySelector('.nicotine').innerHTML = `니코틴 함량: ${cigarTable[i].nicotine}mg`
-            document.querySelector('.cigarPrice').innerHTML = `가격 ${price}원`
-        }
-    }
-
-    let score = 0;
-    let reviewCount = 0;
-    let html = ``
-    for (let i = reviewTable.length - 1; i >= 0; i--) {
-        if (cigarID == reviewTable[i].cigarID) {
-            score += reviewTable[i].score
-            reviewCount++;
-            html += `<tr><td class="reviewText">${reviewTable[i].review}</td><td class="reviewScore"><span id="star">★</span> ${reviewTable[i].score}</td></tr>`
-        }
-    }
-    score = score / reviewCount;
-    document.querySelector('.warning').innerHTML = '<p style="display:none;"> 리뷰 내용을 작성하셔야 합니다. </p>'
-    document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
-    document.querySelector('.reviewTable').innerHTML = html
-    document.querySelector('.inputArea > textarea').value = null;
-}
-
-// 리뷰 추가 후 새로고침
-function addReview() {
-    let url = new URLSearchParams(location.search)
-    let cigarID = parseInt(url.get('cigarID'))
-
-    let review = document.querySelector('.inputArea > textarea').value
-    if (review == '') {
-        document.querySelector('.warning').innerHTML = '<p style="display:relative;"> 리뷰 내용을 작성하셔야 합니다. </p>'
-        return;
-    }
-    let score = parseInt(document.querySelector('.buttonArea > .reviewScore').value)
-
-    let reviewID = reviewTable.length == 0 ? 1 : reviewTable[reviewTable.length - 1].reviewID + 1
-
-    let year = new Date().getFullYear()
-    let month = new Date().getMonth() < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth();
-    let day = new Date().getDate()
-    let listDay = `${year}-${month}-${day}`
-
-    let object = { reviewID, cigarID, memberID: 40003, review, score, listDay }
-
-    reviewTable.push(object)
-
-    printDetail()
 }
