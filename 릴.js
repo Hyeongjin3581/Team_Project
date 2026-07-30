@@ -1,3 +1,4 @@
+
 function entireClick() {
     document.querySelector('.cigarRank').style.display = 'none';
     document.querySelector('.entireRank').style.display = 'block';
@@ -32,11 +33,11 @@ function click4() {
     document.querySelector('.btn3').style.borderBottom = '2px solid black'
 }
 let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
-    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
-    { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
-    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
-    { cigarID: 50004, brandID: 10003, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
+    { cigarID: 50005, brandID: 20001, cigarName: '핏 체인지 유니크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/핏체인지유니크.jpg' },
+    { cigarID: 50006, brandID: 20001, cigarName: '핏 체인지 큐', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/핏체인지큐.jpg' },
+    { cigarID: 50007, brandID: 20002, cigarName: '믹스 아이스 더블', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/믹스아이스더블.jpg' },
+    { cigarID: 50008, brandID: 20002, cigarName: '믹스 아이스뱅', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/믹스아이스뱅.jpg' },
+    { cigarID: 50009, brandID: 20003, cigarName: '믹스 아이스 모아', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/믹스아이스모아.jpg' },
 ]
 
 let reviewTable = [

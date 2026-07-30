@@ -11,6 +11,7 @@
     margin: 0px;
     padding: 0px;
     font-family: 'HannaPro';
+    
 }
 
 li {
@@ -20,6 +21,13 @@ li {
 a {
     text-decoration: none;
     color: black;
+}
+
+#star{
+    font-family: "Noto Sans KR";
+    color: yellow;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px gray;
 }
 
 /* ==========================[header start]============================================================================== */
@@ -206,6 +214,7 @@ a {
 .buttonArea{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 .inputArea{
     width: 100%;
@@ -216,8 +225,22 @@ a {
     width: 100%;
     height: 100%;
     resize: none;
+    padding: 10px;
 }
-
+.buttonArea>p{
+    font-size: 24px;
+    margin-right: 5px;
+}
+.buttonArea>.warning>p{
+    margin-right: 50px;
+    font-size: 15px;
+    color: red;
+}
+.buttonArea> .reviewScore{
+    width: 40px;
+    margin-right: 20px;
+    height: 17px;
+}
 .buttonArea>button{
     padding: 10px;
     font-size: 15px;

@@ -20,10 +20,11 @@ let brandTable = [
 ]
 
 let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '에쎄 히말라야', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
-    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 3mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
-    { cigarID: 50002, brandID: 10001, cigarName: '말보로 레드', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
-    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' }
+    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
+    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
+    { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
+    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
+    { cigarID: 50004, brandID: 10003, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
 ]
 
 let listTable = [
@@ -48,27 +49,24 @@ function showRecentReview(){
     // 새 변수에 날짜가 가장 최근 것이 먼저 오도록 정렬한 테이블
     let recentReviewTable = reviewTable.sort((a, b) => new Date(b.listDay) - new Date(a.listDay))
 
-    // 1. 리뷰테이블에서 cigarID를 갖고옴
-    // 2. cigarID를 통해 cigarTable에서 찾음
-    // 3. 찾은 cigarTable의 배열에서 cigarImg를 갖고옴
-
 
     const today = new Date()
     console.log(recentReviewTable)
     html += `<div class="recentReview">`
 
+    // 첫번째 줄 최근 리뷰 작성 반복문
     for (index = 0; index < 4; index++){
 
         let id = recentReviewTable[index].cigarID
-        let review = recentReviewTable[index].review
+        let review = recentReviewTable[index]
         let cigar = cigarTable.find(cigar => cigar.cigarID == id)
         console.log(cigar)
 
         html += `
         <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
-                <p>빈 별: &star;</p>
-                <p>${review}</p>
+                <p>&star; ${review.score}</p>
+                <p>${review.review}</p>
         </div>`
     }
 
@@ -77,17 +75,18 @@ function showRecentReview(){
     <div class="recentReview">
     `
 
+    // 2번째 최근 리뷰 작성 반복문
     for (index = 4; index < 8; index++){
         let id = recentReviewTable[index].cigarID
-        let review = recentReviewTable[index].review
+        let review = recentReviewTable[index]
         let cigar = cigarTable.find(cigar => cigar.cigarID === id)
         
 
         html += `
         <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
-                <p>빈 별: &star;</p>
-                <p>${review}</p>
+                <p>&star; ${review.score}</p>
+                <p>${review.review}</p>
         </div>`
     }
 
@@ -97,12 +96,12 @@ function showRecentReview(){
     return
 }
 
-console.log(getScoreCigar(50000))
 function getScoreCigar(cigarID){
+
+    // scoreArr에 매개변수로 받은 cigarID와 같은 모든 것을 배열에 대입
     let scoreArr = reviewTable.filter(item => item.cigarID === cigarID)
     let totalScore = 0
     let index = 0
-    console.log(scoreArr)
 
     for (index; index < scoreArr.length; index++){
         totalScore += scoreArr[index].score
@@ -110,8 +109,46 @@ function getScoreCigar(cigarID){
     console.log(totalScore)
     return totalScore/index
 }
+showRankCigar()
+function showRankCigar(){
+
+    let html1 = ''; let html2 = ''; let html3 = '';
+    let entireRank = document.querySelector('.entireRank')
+    let cigarRank = document.querySelector('.cigarRank')
+    let hTPRank = document.querySelector('.hTPRank')
+
+    // 새로운 테이블(담배 ID와 평균점수) 매핑
+     let eachCigarAvgScore = cigarTable.map(cigar => {
+        let result = reviewTable.filter(item => item.cigarID == cigar.cigarID)
+
+        let totalScore = result.reduce((a, c) =>{
+            return (a + c.score)
+        }, 0)
+        let avgScore = totalScore / result.length
+
+        return{
+            cigarID: cigar.cigarID,
+            avgScore: avgScore
+        } 
+     })
+     console.log(eachCigarAvgScore)
+
+     html1 = `
+        <ul>
+            <li>1. <div class="rankImg"><img src="src/에쎄체인지1mg.jpg"></div>에쎄체인지1mg <div class="rankRating">&star; 4.8</div></li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+     `
 
 
+
+
+
+
+}
 
 
 
@@ -126,6 +163,7 @@ function getScoreCigar(cigarID){
 
 function entireClick() {
     document.querySelector('.cigarRank').style.display = 'none';
+    document.querySelector('.hTPRank').style.display = 'none';
     document.querySelector('.entireRank').style.display = 'block';
 
     document.querySelector('.entireBtn').style.borderBottom = '2px solid black'
@@ -136,6 +174,7 @@ function entireClick() {
 
 function click2() {
     document.querySelector('.entireRank').style.display = 'none';
+    document.querySelector('.hTPRank').style.display = 'none';
     document.querySelector('.cigarRank').style.display = 'block';
 
     document.querySelector('.entireBtn').style.borderBottom = 'none'
@@ -145,6 +184,10 @@ function click2() {
 }
 
 function click3() {
+    document.querySelector('.entireRank').style.display = 'none';
+    document.querySelector('.cigarRank').style.display = 'none';
+    document.querySelector('.hTPRank').style.display = 'block';
+
     document.querySelector('.entireBtn').style.borderBottom = 'none'
     document.querySelector('.cigarBtn1').style.borderBottom = 'none'
     document.querySelector('.cigarBtn2').style.borderBottom = '2px solid black'
