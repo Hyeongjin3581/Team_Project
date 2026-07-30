@@ -1,19 +1,23 @@
+/* 기본css */
 *{
-    /* border : 1px solid red; */
-    box-sizing: content-box;
-    margin: 0px;
+    box-sizing: border-box;  /* content+padding 포함 사이즈 정의 */
+    padding: 0px; margin: 0px; /* 기본 여백 제거 */
+    font-family: 'HannaPro';
+}
+@font-face {
+    font-family: 'HannaPro';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+a{
+    text-decoration: none;  /* 하이퍼링크 밑줄 제거 */
+    color: black; /* 하이퍼링크 색상 결정 */
     padding: 0px;
 }
+li{ list-style-type: none;} /* li 항목 글머리 제거 */
 
-li {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
+/* ==================== header =================== */
 .wrap{
     width: 1280px;
 }
@@ -68,8 +72,14 @@ a {
     height: 15px;
     bottom: 6px;
 }
+
+/*=== 기본세팅 ===*/
+
+
+
 .header2{
-    margin: 0px 30px 0px 30px;
+    margin: 0px 0px ;
+    background-color: #EEFBFF;
 }
 .header2>ul{
     display: flex;
@@ -125,14 +135,16 @@ a {
 /*==== mainbody ====*/
 .mainbody {
     width: 1280px;
+    background-color: #EEFBFF;
 }
 
 .main1 {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 1280px;
-    padding: 0 30px;
+    width: 1255px;
+    padding-left: 25px;
+    padding-top: 50px;
 }
 
 .main1 > #imgPepe {
@@ -150,9 +162,18 @@ a {
     max-width: 800px;
 }
 
+.hotnow{
+    display: inline-block;
+    max-width: 170px;
+    max-height: 45px;
+}
+
 .hot {
     font-size: 36px;
     font-weight: bold;
+    padding-bottom: 20px;
+    max-width: 170px;
+    max-height: 45px;
 }
 
 .t {
@@ -170,8 +191,8 @@ a {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-left: 15px; 
-    margin-top: 8dvb;
+    margin-left: 25px; 
+    padding-top: 65px;
 }
 
 .up, .down {
@@ -193,8 +214,8 @@ a {
 
 /*==== main2 (게시물 보기 목록) ====*/
 .main2 {
-    margin-top: 150px;
-    padding: 0 30px 50px 30px;
+    margin-top: 100px;
+    padding: 0px 0px 0px 30px;
 }
 
 .list-title {
@@ -251,6 +272,13 @@ a {
 
 .item-right .user {
     width: 100px;
+}
+
+
+/* ===footer===*/
+.footer{
+    background-color: #EEFBFF;
+    height: 40px;
 }
 
 

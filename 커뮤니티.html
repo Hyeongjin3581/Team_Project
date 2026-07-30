@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='ko'>
 <head>
+    <meta charset="UTF-8">
     <link rel='stylesheet' href='커뮤니티.css'>
 </head>
 <body>
@@ -9,7 +10,7 @@
             <div class="header1">
                 <div id="imgBox">
                     <a href="#">
-                        <img src = '/img/main_logo.png', alt="로고">
+                        <img src="/img/main_logo.png" alt="로고">
                     </a>
                 </div>
                 <ul id="mainMenu">
@@ -32,11 +33,17 @@
                         <a href="#">회원가입</a>
                     </li>
                 </ul>
+
+                <!-- 커뮤니티 작성 -->
                 <div id="h2-row">
                     <div id="h2">글을 올려 소통해보세요</div>
                     <div class="btn-group">
-                        <button class="btn-add">게시글 작성하기</button>
-                        <button class="btn-my">내 게시글 확인하기</button>
+                        <a href="게시글작성.html">
+                            <button class="btn-add">게시글 작성하기</button>
+                        </a>
+                        <a href="내게시글.html">
+                            <button class="btn-my">내 게시글 확인하기</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -44,23 +51,25 @@
 
         <!-- 본문 영역 -->
         <div class="mainbody">
-            <!-- 오늘의 핫글 -->
             <div class="main1">
                 <div id="imgPepe">
-                    <a href="게시판.html">
+                    <a href="최윤성.html">
                         <img class="pepe" src="/img/페페담배.jpeg" alt="프로필">
                     </a>
                 </div>
                 <div id="Writing">
-                    <a href="게시판.html">
+                    <a href="오늘의핫글.html" class="hotnow">
                         <div class="hot">오늘의 핫글</div>
-                        <p class="t">
-                            <strong>에쎄 히말라야 후기</strong><br>
-                            편의점에서 뭐 살지 고민하다가 이름이 겁나 웅장해서 사봄.
-                            히말라야라길래 한 대 피우면 폐 속에 만년설 쌓이고 예티랑 하이파이브할 줄 알았는데, 실제로는 그냥 무난하게 시원한 1미리 에쎄임.
-                            일단 담배가 얇아서 처음 보면 이쑤시개<span class="plus">..................더보기</span>
-                        </p>
                     </a>
+                    <p class="t">
+                        <strong>에쎄 히말라야 후기</strong><br>
+                        편의점에서 뭐 살지 고민하다가 이름이 겁나 웅장해서 사봄.
+                        히말라야라길래 한 대 피우면 폐 속에 만년설 쌓이고 예티랑 하이파이브할 줄 알았는데, 실제로는 그냥 무난하게 시원한 1미리 에쎄임.
+                        일단 담배가 얇아서 처음 보면 이쑤시개
+                        <a href="에쎄 히말라야 후기.html">
+                            <span class="plus">..................더보기</span>
+                        </a>
+                    </p>
                 </div>
                 <div id="RD">
                     <button class="up" id="btnUp">
@@ -74,7 +83,7 @@
                 </div>
             </div>
 
-            <!-- 게시물 보기 (총 8개 목록) -->
+            <!-- 게시물 보기  -->
             <div class="main2">
                 <div class="list-title">게시물 보기</div>
                 <ul class="post-list">
@@ -90,7 +99,7 @@
                     </li>
                     <li class="post-item">
                         <div class="item-left">
-                            <span class="title">AI가 추천해주는 내 취향 딱 맞느 HNB 스틱 추천</span>
+                            <span class="title">AI가 추천해주는 내 취향 딱 맞는 HNB 스틱 추천</span>
                             <span class="reply">[3]</span>
                         </div>
                         <div class="item-right">
@@ -125,7 +134,7 @@
                         </div>
                         <div class="item-right">
                             <span class="like"><img src="img/개추용.png" alt="추천"> 11</span>
-                            <span class="user">ID : 카타리나</span>
+                            <span class="user">ID : ***</span>
                         </div>
                     </li>
                     <li class="post-item">
@@ -145,7 +154,7 @@
                         </div>
                         <div class="item-right">
                             <span class="like"><img src="img/개추용.png" alt="추천"> 11</span>
-                            <span class="user">ID : 우디르</span>
+                            <span class="user">ID : 티모</span>
                         </div>
                     </li>
                     <li class="post-item">
@@ -158,9 +167,31 @@
                             <span class="user">ID : ***</span>
                         </div>
                     </li>
+                    <li class="post-item">
+                        <div class="item-left">
+                            <span class="title">[M3] 일본 면세점 담배 라인업 공유한다 (스압, 30장)</span>
+                            <span class="reply">[19]</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="like"><img src="img/개추용.png" alt="추천"> 11</span>
+                            <span class="user">ID : ***</span>
+                        </div>
+                    </li>
+                    <li class="post-item">
+                        <div class="item-left">
+                            <span class="title">[리뷰] Raison Ionia 블루베리 향, 실 구매 리얼 후기</span>
+                            <span class="reply">[7]</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="like"><img src="img/개추용.png" alt="추천"> 11</span>
+                            <span class="user">ID : 티모</span>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
+        <!-- footer background 색칠-->
+        <div class="footer"></div>
     </div>
 
     <script src="커뮤니티.js"></script>
