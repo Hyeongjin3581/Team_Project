@@ -13,7 +13,12 @@
     font-family: 'HannaPro';
     
 }
-
+#star{
+    font-family: "Noto Sans KR";
+    color: yellow;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px gray;
+}
 li {
     list-style-type: none;
 }

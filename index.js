@@ -60,12 +60,12 @@ function showRecentReview(){
         let id = recentReviewTable[index].cigarID
         let review = recentReviewTable[index]
         let cigar = cigarTable.find(cigar => cigar.cigarID == id)
-        console.log(cigar)
+
 
         html += `
         <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
-                <p>&star; ${review.score}</p>
+                <p><span id="star">★</span> ${review.score}</p>
                 <p>${review.review}</p>
         </div>`
     }
@@ -85,7 +85,7 @@ function showRecentReview(){
         html += `
         <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
-                <p>&star; ${review.score}</p>
+                <p><span id="star">★</span> ${review.score}</p>
                 <p>${review.review}</p>
         </div>`
     }
@@ -140,7 +140,7 @@ function showRankCigar(){
 
      html1 += `<ul>`
      for (let index = 0; index < highRankCigar.length; index++){
-        html1 += `<li>${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> &star; ${highRankCigar[index].avgScore}</div></li>`
+        html1 += `<li>${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span id="star">★</span> ${highRankCigar[index].avgScore}</div></li>`
      }
 
      entireRank.innerHTML = html1;
