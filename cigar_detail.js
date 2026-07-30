@@ -65,6 +65,7 @@ function printDetail() {
     for (let i = 0; i >= cigarTable.length - 1; i++) {
         if (cigarID == cigarTable[i].cigarID) {
             let price = cigarTable[i].price.toLocaleString()
+            document.querySelector('.imgBox').innerHTML = `${cigarTable[i].cigarImg}`
             document.querySelector('.cigarName > h2').innerHTML = `${cigarTable[i].cigarName}`
             document.querySelector('.tar').innerHTML = `타르 함량: ${cigarTable[i].tar}mg`
             document.querySelector('.nicotine').innerHTML = `니코틴 함량: ${cigarTable[i].nicotine}mg`
