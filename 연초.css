@@ -139,9 +139,18 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     font-size: 30px;
 }
 
-#star {
+#star0 {
     text-align: center;
     margin: 10px;
+}
+#star0 p {
+    text-align: center;
+}
+.star{
+    font-family: "Noto Sans KR";
+    color: yellow;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px gray;
 }
 
 .review {

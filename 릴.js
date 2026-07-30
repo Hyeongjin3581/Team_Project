@@ -55,7 +55,7 @@ let reviewTable = [
     { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
 ]
 let memberTable = [
-    { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
+    { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpg' },
     { MemberID: 40001, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/img/프사1.jpg' },
     { MemberID: 40002, userID: 'wEqweqw232', userPW: '12341234', userNAME: '베인', userPHOTO: '/img/프사2.jpg' },
     { MemberID: 40003, userID: 'smoker01', userPW: 'qwer1234', userNAME: '아리', userPHOTO: '/img/프사3.jpg' },
@@ -78,13 +78,13 @@ function a() {
                             </div>
                             <div id="detail">
                                 <h3> ${cigarTable[i].cigarName}</h3>
-                                <p> ${cigarTable[i].nicotine}mg </p>
-                                <p> ${cigarTable[i].tar}mg </p>
+                                <p> 니코틴 ${cigarTable[i].nicotine}mg </p>
+                                <p> 타르 ${cigarTable[i].tar}mg </p>
                             </div>
-                            <div id="star">
+                            <div id="star${i}">
                                 <p> ★ 4.2 </p>
                                 <p> ★★★★ </p>
-                                <p> 리뷰 224개 </p>
+                                
                             </div>
                         </div>
                     </a>`
@@ -122,5 +122,21 @@ function a() {
                     
     }
     document.querySelector('#main').innerHTML = html
+    for(let r = 0; r < cigarTable.length; r++){
+        let review = 0
+        let result = 0
+        let count = 0
+        for(let m = 0; m < reviewTable.length; m++){
+            if(cigarTable[r].cigarID == reviewTable[m].cigarID){
+                review++
+                count++
+                result += reviewTable[m].score
+            }
+        }
+        result = result / count
+        let abc = `#star${r}`
+        document.querySelector(abc).innerHTML = `<p> <span class="star">★</span> ${result.toFixed(1)} </p> <p> 리뷰 ${review}개 </p> `
+        
+    }
 }
 a()
