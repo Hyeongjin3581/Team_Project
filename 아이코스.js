@@ -32,11 +32,11 @@ function click4() {
     document.querySelector('.btn3').style.borderBottom = '2px solid black'
 }
 let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
-    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
-    { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
-    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
-    { cigarID: 50004, brandID: 10003, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
+    { cigarID: 50010, brandID: 30001, cigarName: '테리아 블랙 그린', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아블랙그린.jpg' },
+    { cigarID: 50011, brandID: 30001, cigarName: '테리아 썬 펄', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/테리아썬펄.jpg' },
+    { cigarID: 50012, brandID: 30001, cigarName: '테리아 앰버', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아앰버.jpg' },
+    { cigarID: 50013, brandID: 30001, cigarName: '테리아 옐로우', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아옐로우.jpg' },
+    { cigarID: 50014, brandID: 30001, cigarName: '테리아 퍼플 웨이브', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/테리아퍼플웨이브.jpg' },
 ]
 
 let reviewTable = [
@@ -51,7 +51,13 @@ let reviewTable = [
     { reviewID: 20008, cigarID: 50008, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
     { reviewID: 20009, cigarID: 50009, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
     { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
-    { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20011, cigarID: 50011, memberID: 40003, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20012, cigarID: 50012, memberID: 40001, review: '연무량도 괜찮고 맛도 깔끔함.', score: 5, listDay: '2026-07-18' },
+    { reviewID: 20013, cigarID: 50013, memberID: 40004, review: '무난하긴 한데 조금 심심한 맛.', score: 3, listDay: '2026-07-21' },
+    { reviewID: 20014, cigarID: 50014, memberID: 40002, review: '퍼플 캡슐 향이 생각보다 괜찮음.', score: 4, listDay: '2026-07-25' },
+    { reviewID: 20015, cigarID: 50005, memberID: 40008, review: '계속 손이 가는 맛이라 자주 핌.', score: 5, listDay: '2026-07-26' },
+    { reviewID: 20016, cigarID: 50009, memberID: 40006, review: '향은 좋은데 가격이 조금 아쉬움.', score: 4, listDay: '2026-07-28' },
+    { reviewID: 20017, cigarID: 50011, memberID: 40007, review: '기대보단 평범했지만 나쁘진 않음.', score: 3, listDay: '2026-07-30' },
 ]
 let memberTable = [
     { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
