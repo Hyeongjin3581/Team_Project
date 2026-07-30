@@ -1,10 +1,24 @@
-*{
+@font-face {
+    font-family: 'HannaPro';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+* {
     /* border : 1px solid red; */
     box-sizing: content-box;
     margin: 0px;
     padding: 0px;
+    font-family: 'HannaPro';
+    
 }
-
+#star{
+    font-family: "Noto Sans KR";
+    color: yellow;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px gray;
+}
 li {
     list-style-type: none;
 }
