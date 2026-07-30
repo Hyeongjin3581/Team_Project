@@ -65,3 +65,53 @@ let memberTable = [
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/img/프사8.jpg' },
 ]
 
+
+/*=================기본 테이블 =======================*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ID 선택자(#)를 사용하여 DOM 요소 가져오기
+    const btnUp = document.querySelector('#btnUp');
+    const btnDown = document.querySelector('#btnDown');
+    const cntUp = document.querySelector('#cntUp');
+    const cntDown = document.querySelector('#cntDown');
+
+    let isUp = false;
+    let isDown = false;
+
+    if (btnUp && cntUp) {
+        btnUp.addEventListener('click', () => {
+            let count = parseInt(cntUp.textContent, 10);
+            if (!isUp) {
+                if (isDown) {
+                    btnDown.click(); 
+                }
+                cntUp.textContent = count + 1;
+                btnUp.style.opacity = '0.6'; 
+                isUp = true;
+            } else {
+                cntUp.textContent = count - 1;
+                btnUp.style.opacity = '1';
+                isUp = false;
+            }
+        });
+    }
+
+    // 비추천 버튼 로직
+    if (btnDown && cntDown) {
+        btnDown.addEventListener('click', () => {
+            let count = parseInt(cntDown.textContent, 10);
+            if (!isDown) {
+                if (isUp) {
+                    btnUp.click(); 
+                }
+                cntDown.textContent = count + 1;
+                btnDown.style.opacity = '0.6'; 
+                isDown = true;
+            } else {
+                cntDown.textContent = count - 1;
+                btnDown.style.opacity = '1';
+                isDown = false;
+            }
+        });
+    }
+});
