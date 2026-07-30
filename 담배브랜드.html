@@ -40,32 +40,43 @@
             <h2>담배 브랜드</h2>
             <p>다양한 국내 담배 브랜드를 확인해보세요.</p>
         </div>
-        <div class="initialSelect">
+        <div class="trendBrand">
+            <h3>인기 브랜드 목록</h3>
             <ul>
-                <li>ㄱ</li>
-                <li>ㄴ</li>
-                <li>ㄷ</li>
-                <li>ㄹ</li>
-                <li>ㅁ</li>
-                <li>ㅂ</li>
-                <li>ㅅ</li>
-                <li>ㅇ</li>
-                <li>ㅈ</li>
-                <li>ㅊ</li>
-                <li>ㅋ</li>
-                <li>ㅌ</li>
-                <li>ㅍ</li>
-                <li>ㅎ</li>
+                <li>
+                    <img src="src/marlboro_logopng.png">
+                    <div>말보로</div>
+                </li>
+                <li>
+                    <img src="src/esse_logo.jpg">
+                    <div>에쎄</div>
+                </li>
+                <li>
+                    <img src="src/mevius_logo.jpg">
+                    <div>메비우스</div>
+                </li>
+                <li>
+                    <img src="src/dunhill_logo.png">
+                    <div>던힐</div>
+                </li>
             </ul>
         </div>
-        <div class="brands">
-            <div class="brandName">던힐</div>
-            <div class="brandList">
-                <p><a href="#">던힐 스위치 6mg</a></p>
-                <p><a href="#">던힐 파인컷 1mg</a></p>
-                <p><a href="#">던힐 프로스트</a></p>
-            </div>
+        <div class="initialSelect">
+            <ul>
+                <li><button value="ㄷ" onclick="brandPrint(this.value)">ㄷ</button></li>
+                <li><button value="ㄹ" onclick="brandPrint(this.value)">ㄹ</button></li>
+                <li><button value="ㅁ" onclick="brandPrint(this.value)">ㅁ</button></li>
+                <li><button value="ㅇ" onclick="brandPrint(this.value)">ㅇ</button></li>
+            </ul>
         </div>
+        <table class="brands">
+            <tr>
+                <td class="brandName">던힐</td>
+                <td class="brandList">
+                    <a href="cigar_detail.html?cigarID=50005">1</a> <br /> <br/>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <script src="담배브랜드.js"></script>
