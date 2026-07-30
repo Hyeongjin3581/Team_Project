@@ -1,13 +1,13 @@
 console.log("hi")
 
 let reviewTable = [
-    { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '필만해요', score: 4, listDay: '2026-07-01' },
+    { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '필만해요', score: 3, listDay: '2026-07-01' },
     { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
-    { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20006, cigarID: 50000, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 2, listDay: '2026-07-29' },
+    { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 3, listDay: '2026-07-12' },
+    { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 5, listDay: '2026-07-29' },
+    { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 2, listDay: '2026-07-12' },
+    { reviewID: 20006, cigarID: 50000, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 2, listDay: '2026-07-29' },
     { reviewID: 20007, cigarID: 50003, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
 ]
 
@@ -128,22 +128,22 @@ function showRankCigar(){
 
         return{
             cigarID: cigar.cigarID,
+            cigarName: cigarTable.find(item => item.cigarID == cigar.cigarID).cigarName,
+            cigarImg: cigarTable.find(item=> item.cigarID == cigar.cigarID).cigarImg,
             avgScore: avgScore
         } 
      })
      console.log(eachCigarAvgScore)
 
-     html1 = `
-        <ul>
-            <li>1. <div class="rankImg"><img src="src/에쎄체인지1mg.jpg"></div>에쎄체인지1mg <div class="rankRating">&star; 4.8</div></li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-        </ul>
-     `
+     // 평균점수가 높은 순서대로 정렬
+     let highRankCigar = eachCigarAvgScore.sort((a, b) => b.avgScore - a.avgScore)
 
+     html1 += `<ul>`
+     for (let index = 0; index < highRankCigar.length; index++){
+        html1 += `<li>${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> &star; ${highRankCigar[index].avgScore}</div></li>`
+     }
 
+     entireRank.innerHTML = html1;
 
 
 
