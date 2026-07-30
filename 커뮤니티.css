@@ -18,9 +18,7 @@ a{
 li{ list-style-type: none;} /* li 항목 글머리 제거 */
 
 /* ==================== header =================== */
-.wrap{
-    width: 1280px;
-}
+
 
 .header1{
     display: flex;
@@ -55,6 +53,11 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     font-weight: lighter;
     font-size: 28px;
 }
+
+#mainMeue>li>a>.red {
+    color: rgb(255, 150, 150);
+}
+
 
 #searchBox{
     position: relative;
