@@ -1,24 +1,3 @@
-// --------------------------------------------------------------------------
-// 1. 추천 / 비추천 상태 불러오기 및 UI 초기화
-// --------------------------------------------------------------------------
-let currentUp = localStorage.getItem('hotPostUp');
-let currentDown = localStorage.getItem('hotPostDown');
-
-// localStorage 값이 없으면 기본값(206, 58) 설정
-if (currentUp === null) {
-    currentUp = 206;
-    localStorage.setItem('hotPostUp', currentUp);
-} else {
-    currentUp = parseInt(currentUp, 10);
-}
-
-function click4() {
-    document.querySelector('.entireBtn').style.borderBottom = 'none';
-    document.querySelector('.cigarBtn1').style.borderBottom = 'none';
-    document.querySelector('.cigarBtn2').style.borderBottom = 'none';
-    document.querySelector('.btn3').style.borderBottom = '2px solid black';
-}
-
 let cigarTable = [
     { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
     { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
@@ -146,6 +125,27 @@ function showPosts() {
                     <span class="user">ID : 카타리나</span>
                 </div>
             </li>`
+}
+
+// --------------------------------------------------------------------------
+// 1. 추천 / 비추천 상태 불러오기 및 UI 초기화
+// --------------------------------------------------------------------------
+let currentUp = localStorage.getItem('hotPostUp');
+let currentDown = localStorage.getItem('hotPostDown');
+
+// localStorage 값이 없으면 기본값(206, 58) 설정
+if (currentUp === null) {
+    currentUp = 206;
+    localStorage.setItem('hotPostUp', currentUp);
+} else {
+    currentUp = parseInt(currentUp, 10);
+}
+
+function click4() {
+    document.querySelector('.entireBtn').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none';
+    document.querySelector('.btn3').style.borderBottom = '2px solid black';
 }
 
 if (currentDown === null) {
