@@ -61,7 +61,7 @@ function showRecentReview(){
         let review = recentReviewTable[index]
         let cigar = cigarTable.find(cigar => cigar.cigarID == id)
 
-
+        console.log(`${cigar.cigarID}, ${review.score}, ${review.review}`)
         html += `
         <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
@@ -79,9 +79,9 @@ function showRecentReview(){
     for (index = 4; index < 8; index++){
         let id = recentReviewTable[index].cigarID
         let review = recentReviewTable[index]
-        let cigar = cigarTable.find(cigar => cigar.cigarID === id)
+        let cigar = cigarTable.find(cigar => cigar.cigarID == id)
         
-
+        console.log(`${cigar.cigarID}, ${review.score}, ${review.review}`)
         html += `
         <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
