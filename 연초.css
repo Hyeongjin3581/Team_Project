@@ -107,6 +107,11 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     flex-wrap: wrap;
 }
 
+.mainLayout{
+    display: grid;
+    grid-template-columns: 1fr 250px;
+}
+
 .box {
     display: flex;
 }

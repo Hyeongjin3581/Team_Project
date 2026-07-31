@@ -104,8 +104,30 @@ a {
 li{
     list-style-type: none;
 }
+.mainLayout{
+}
+.mainBanner{
+    background-color: #800020;
+
+}
+.mainBanner{
+    margin-top: 30px;
+    padding: 20px;
+}
+.mainBanner > img{
+    border-radius: 20px;
+    width: 70%;
+    object-fit: cover;
+}
 
 /* ============================최근 리뷰 ====================================== */
+
+.recentReviewHeader{
+    margin: 20px;
+}
+.recentReviewHeader > h3{
+    margin: 10px;
+}
 .recentReview{
     display: flex;
     background-color: #effbff;
@@ -116,7 +138,9 @@ li{
     width: 12%;
     margin: 30px;
     padding: 20px;
-    background-color: #e9e9e9;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
     color: black;
 }
 
@@ -126,6 +150,13 @@ li{
     object-fit: contain;
 }
 /* =========================== 신상품 ================================ */
+
+.newItemHeader{
+    margin: 20px;
+}
+.newItemHeader > h3{
+    margin: 10px;
+}
 
 .recentItems{
     display: flex;
@@ -142,7 +173,9 @@ li{
     width: 12%;
     margin: 30px;
     padding: 20px;
-    background-color:#e9e9e9;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
     color: black;
 }
 
@@ -160,7 +193,11 @@ li{
     right: 3%;
     width: 250px;
     height: 40%;
-    background-color: #e9e9e9;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
     text-align: center;
 }
 
