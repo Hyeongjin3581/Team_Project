@@ -63,7 +63,7 @@ function showRecentReview(){
 
         console.log(`${cigar.cigarID}, ${review.score}, ${review.review}`)
         html += `
-        <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
+        <div style="cursor: pointer" onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
                 <p><span id="star">★</span> ${review.score}</p>
                 <p>${review.review}</p>
@@ -83,7 +83,7 @@ function showRecentReview(){
         
         console.log(`${cigar.cigarID}, ${review.score}, ${review.review}`)
         html += `
-        <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
+        <div style="cursor: pointer" onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
                 <p><span id="star">★</span> ${review.score}</p>
                 <p>${review.review}</p>
