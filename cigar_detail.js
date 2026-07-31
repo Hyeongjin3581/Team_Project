@@ -13,7 +13,13 @@ if (reviewTable == null){
     { reviewID: 20008, cigarID: 50008, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
     { reviewID: 20009, cigarID: 50009, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
     { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
-    { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20011, cigarID: 50011, memberID: 40003, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20012, cigarID: 50012, memberID: 40001, review: '연무량도 괜찮고 맛도 깔끔함.', score: 5, listDay: '2026-07-18' },
+    { reviewID: 20013, cigarID: 50013, memberID: 40004, review: '무난하긴 한데 조금 심심한 맛.', score: 3, listDay: '2026-07-21' },
+    { reviewID: 20014, cigarID: 50014, memberID: 40002, review: '퍼플 캡슐 향이 생각보다 괜찮음.', score: 4, listDay: '2026-07-25' },
+    { reviewID: 20015, cigarID: 50005, memberID: 40008, review: '계속 손이 가는 맛이라 자주 핌.', score: 5, listDay: '2026-07-26' },
+    { reviewID: 20016, cigarID: 50009, memberID: 40006, review: '향은 좋은데 가격이 조금 아쉬움.', score: 4, listDay: '2026-07-28' },
+    { reviewID: 20017, cigarID: 50011, memberID: 40007, review: '기대보단 평범했지만 나쁘진 않음.', score: 3, listDay: '2026-07-30' },
         ])
     ) 
 }
