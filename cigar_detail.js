@@ -77,7 +77,7 @@ function printDetail() {
     console.log(cigarID)
 
     // 로컬 스토리지로 불러오기 - 대상 : 리뷰목록
-    let reviewList = localStorage.getItem( 'reviewList' )
+    let reviewList = localStorage.getItem( 'reviewTable' )
     if( reviewList == null){
         reviewList = reviewTable
     } else{
