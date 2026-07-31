@@ -64,7 +64,7 @@ let commuTable = [
     { commuID: 30000, memberID: 40000, userNAME: '요네', userPHOTO: 'img/페페담배.jpeg', content: '한번 펴봤는데 그럭저럭 필만 하네요~', timeStr: '14:30', createdDay: '2026-07-01' },
     { commuID: 30001, memberID: 40002, userNAME: '베인', userPHOTO: 'img/프사2.jpg', content: '목 뚫리는줄', timeStr: '16:05', createdDay: '2026-07-28' },
     { commuID: 30002, memberID: 40005, userNAME: '징크스', userPHOTO: 'img/프사5.jpg', content: '노맛', timeStr: '18:22', createdDay: '2026-07-29' },
-    { commuID: 30003, memberID: 40001, userNAME: '야스오', userPHOTO: 'img/프사1.jpg', content: '내 이전 작성글 테스트!', timeStr: '19:10', createdDay: '2026-07-30' },
+    { commuID: 30003, memberID: 40001, userNAME: '야스오', userPHOTO: 'img/프사1.jpg', content: '이 담배 맛있죠. ', timeStr: '19:10', createdDay: '2026-07-30' },
 ];
 
 
@@ -287,3 +287,5 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+
+localStorage.clear();
