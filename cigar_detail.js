@@ -65,12 +65,15 @@ function printDetail() {
     console.log(url)
     let cigarID = url.get('cigarID')
     console.log(cigarID)
-    // let reviewList = localStorage.getItem( 'reviewList' )
-    // if( reviewList == null){
-    //     reviewList = []
-    // } else{
-    //     reviewList = JSON.parse( reviewList )
-    // }
+
+    let reviewList = localStorage.getItem( 'reviewList' )
+
+    if( reviewList == null){
+        reviewList = reviewTable
+    } else{
+        reviewList = JSON.parse( reviewList )
+    }
+    console.log(reviewList)
 
     for (let i = 0; i <= cigarTable.length - 1; i++) {
         if (cigarID == cigarTable[i].cigarID) {
@@ -86,11 +89,11 @@ function printDetail() {
     let score = 0;
     let reviewCount = 0;
     let html = ``
-    for (let i = reviewTable.length - 1; i >= 0; i--) {
-        if (cigarID == reviewTable[i].cigarID) {
-            score += reviewTable[i].score
+    for (let i = reviewList.length - 1; i >= 0; i--) {
+        if (cigarID == reviewList[i].cigarID) {
+            score += reviewList[i].score
             reviewCount++;
-            html += `<tr><td class="reviewText">${reviewTable[i].review}</td><td class="reviewScore"><span id="star">★</span> ${reviewTable[i].score}</td></tr>`
+            html += `<tr><td class="reviewText">${reviewList[i].review}</td><td class="reviewScore"><span id="star">★</span> ${reviewList[i].score}</td></tr>`
         }
     }
     score = score / reviewCount;
@@ -105,6 +108,15 @@ function addReview() {
     let url = new URLSearchParams(location.search)
     let cigarID = parseInt(url.get('cigarID'))
 
+    let reviewList = localStorage.getItem('reviewList')
+
+    if (reviewList == null) {
+        reviewList = []
+    } else {
+        reviewList = JSON.parse(reviewList)
+    }
+    console.log(reviewList)
+
     let review = document.querySelector('.inputArea > textarea').value
     if (review == '') {
         document.querySelector('.warning').innerHTML = '<p style="display:relative;"> 리뷰 내용을 작성하셔야 합니다. </p>'
@@ -112,16 +124,21 @@ function addReview() {
     }
     let score = parseInt(document.querySelector('.buttonArea > .reviewScore').value)
 
-    let reviewID = reviewTable.length == 0 ? 1 : reviewTable[reviewTable.length - 1].reviewID + 1
-
     let year = new Date().getFullYear()
     let month = new Date().getMonth() < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth();
     let day = new Date().getDate()
     let listDay = `${year}-${month}-${day}`
 
-    let object = { reviewID, cigarID, memberID: 40003, review, score, listDay }
+    let object = { cigarID, memberID: 40003, review, score, listDay }
+    object.reviewID = reviewList.length == 0 ? 1 : reviewList[reviewList.length - 1].reviewID + 1
 
-    reviewTable.push(object)
+
+
+    // let object = { reviewID, cigarID, memberID: 40003, review, score, listDay }
+
+    reviewList.push(object)
+
+    localStorage.setItem('reviewList', JSON.stringify(reviewList))
 
     printDetail()
 }
