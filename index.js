@@ -63,7 +63,7 @@ function showRecentReview(){
 
 
         html += `
-        <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
+        <div style="cursor: pointer" onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
                 <p><span id="star">★</span> ${review.score}</p>
                 <p>${review.review}</p>
@@ -83,7 +83,7 @@ function showRecentReview(){
         
 
         html += `
-        <div onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
+        <div style="cursor: pointer" onclick="location.href='cigar_detail.html?cigarID=${cigar.cigarID}'" class="cigarItem">
             <img src="${cigar.cigarImg}">
                 <p><span id="star">★</span> ${review.score}</p>
                 <p>${review.review}</p>
@@ -151,7 +151,7 @@ function showRankCigar(){
 
      html1 += `<ul>`
      for (let index = 0; index < 5; index++){
-        html1 += `<li onclick="location.href='cigar_detail.html?cigarID=${highRankCigar[index].cigarID}'">${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span id="star">★</span> ${highRankCigar[index].avgScore}</div></li>`
+        html1 += `<li style="cursor: pointer" onclick="location.href='cigar_detail.html?cigarID=${highRankCigar[index].cigarID}'">${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span id="star">★</span> ${highRankCigar[index].avgScore}</div></li>`
      }
 
      entireRank.innerHTML = html1;
