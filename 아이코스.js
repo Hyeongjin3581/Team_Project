@@ -145,3 +145,52 @@ function a() {
     }
 }
 a()
+
+showRankCigar()
+function showRankCigar(){
+
+    let html1 = ''; let html2 = ''; let html3 = '';
+    let entireRank = document.querySelector('.entireRank')
+    let cigarRank = document.querySelector('.cigarRank')
+    let hTPRank = document.querySelector('.hTPRank')
+
+    // 새로운 테이블(담배 ID와 평균점수 등)에 모든 담배를 차례대로 매핑
+     let eachCigarAvgScore = cigarTable.map(cigar => {
+
+        // ========================================================================
+        // result에 리뷰테이블의 cigarID와 매핑될 cigarID만 찾아 그 객체 배열들을 선언
+        let result = reviewTable.filter(item => item.cigarID == cigar.cigarID)
+
+        // result 객체배열의 점수만 다 더해서 반환된 값을 totalScore에 선언
+        let totalScore = result.reduce((a, c) =>{
+            return (a + c.score)
+        }, 0)
+        // 다 더한 totalScore의 평균 값 avgScore에 선언
+        let avgScore = totalScore / result.length
+        //=============== 생각해보니까 여기는 getScoreCigar()함수를 쓰면 됐음=============
+
+
+        //매핑될 반환 객체들
+        return{
+            // 매핑될 때 사용한 cigar의 cigarID
+            cigarID: cigar.cigarID,
+            // 매핑될 때 사용된 cigar의 cigarID를 cigarTable에서 찾아 cigarName을 갖고옴
+            cigarName: cigarTable.find(item => item.cigarID == cigar.cigarID).cigarName,
+            //매핑될 때 사용된 cigar의 cigarID를 cigarTable에서 찾아 cigarImg를 갖고옴
+            cigarImg: cigarTable.find(item=> item.cigarID == cigar.cigarID).cigarImg,
+            // 계산된 평균값
+            avgScore: avgScore
+        } 
+     })
+
+     // 평균점수가 높은 순서대로 정렬
+     let highRankCigar = eachCigarAvgScore.sort((a, b) => b.avgScore - a.avgScore)
+
+     html1 += `<ul>`
+     for (let index = 0; index < 5; index++){
+        html1 += `<li onclick="location.href='cigar_detail.html?cigarID=${highRankCigar[index].cigarID}'">${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span class="star">★</span> ${highRankCigar[index].avgScore}</div></li>`
+     }
+
+     entireRank.innerHTML = html1;
+
+}
