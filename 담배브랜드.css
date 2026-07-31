@@ -127,10 +127,10 @@ a {
 
 .pageTitle > p {
     font-size: 20px;
+    color: rgb(110, 108, 108);
 }
 .trendBrand{
     margin: 20px 150px 20px 150px;
-
 }
 .trendBrand>ul{
     display: flex;
