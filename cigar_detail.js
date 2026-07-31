@@ -1,4 +1,7 @@
-let reviewTable = [
+let reviewTable = JSON.parse(localStorage.getItem("reviewTable"))
+
+if (reviewTable == null){
+    localStorage.setItem("reviewTable", JSON.stringify([
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
     { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
     { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
@@ -11,17 +14,12 @@ let reviewTable = [
     { reviewID: 20009, cigarID: 50006, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
     { reviewID: 20010, cigarID: 50008, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
     { reviewID: 20011, cigarID: 50010, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
-]
-
-let brandTable = [
-    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '에쎄', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '던힐', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '레종', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
-]
-
-let cigarTable = [
+        ])
+    ) 
+}
+let cigarTable = JSON.parse(localStorage.getItem("cigarTable"))
+if (cigarTable == null){
+    localStorage.setItem("cigarTable", JSON.stringify([
     { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
     { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
     { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
@@ -37,6 +35,17 @@ let cigarTable = [
     { cigarID: 50012, brandID: 30001, cigarName: '테리아 블루', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아블루.jpg' },
     { cigarID: 50013, brandID: 30001, cigarName: '테리아 블랙 옐로우', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아블랙옐로우.jpg' },
     { cigarID: 50014, brandID: 30001, cigarName: '테리아 퍼플 웨이브', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/테리아퍼플웨이브.jpg' },
+        ])
+    )
+}
+
+
+let brandTable = [
+    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
+    { brandID: 10001, brandName: '에쎄', brandLogo: '/src/img' },
+    { brandID: 10001, brandName: '던힐', brandLogo: '/src/img' },
+    { brandID: 10001, brandName: '레종', brandLogo: '/src/img' },
+    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
 ]
 
 let listTable = [
@@ -122,6 +131,7 @@ function addReview() {
     let object = { reviewID, cigarID, memberID: 40003, review, score, listDay }
 
     reviewTable.push(object)
+    localStorage.setItem("reviewTable", JSON.stringify(reviewTable))
 
     printDetail()
 }
