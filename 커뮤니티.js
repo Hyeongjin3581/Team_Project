@@ -32,14 +32,6 @@ function click4() {
     document.querySelector('.btn3').style.borderBottom = '2px solid black';
 }
 
-let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
-    { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
-    { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
-    { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
-    { cigarID: 50004, brandID: 10003, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
-];
-
 let reviewTable = [
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
     { reviewID: 20001, cigarID: 50001, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
@@ -54,8 +46,9 @@ let reviewTable = [
     { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
     { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
 ];
-
-let memberTable = [
+let memberTable = JSON.parse(localStorage.getItem("memberTable"))
+if (memberTable == null){
+    memberTable = [
     { MemberID: 40009, userID: 'pepe01234', userPW: '0000022', userNAME: '페페', userPHOTO: '/img/페페담배.jpeg' },
     { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
     { MemberID: 40001, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/img/프사1.jpg' },
@@ -66,10 +59,27 @@ let memberTable = [
     { MemberID: 40006, userID: 'goldleaf', userPW: 'gold4321', userNAME: '케인', userPHOTO: '/img/프사6.jpg' },
     { MemberID: 40007, userID: 'reviewking', userPW: 'review99', userNAME: '가렌', userPHOTO: '/img/프사7.jpg' },
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/img/프사8.jpg' },
-];
+    ];
+}
 
-let postsTable = [
-    {postID: 60000, userID: 'pepe01234', userNAME: '페페', postTitle: `에쎄 히말라야 후기`, postContent: '편의점에서 뭐 살지 고민하다가 이름이 겁나 웅장해서 사봄. \n히말라야라길래 한 대 피우면 폐 속에 만년설 쌓이고 예티랑 하이파이브할 줄 알았는데, 실제로는 그냥 무난하게 시원한 1미리 에쎄임.\n일단 담배가 얇아서 처음 보면 이쑤시개인가 싶다. 빨아보면 역시 1미리답게 타격감은 세지 않음. 평소에 굵은 담배나 고타르 피우던 사람은 “이거 불 붙은 거 맞냐?” 할 수도 있음. \n캡슐 터뜨리기 전에는 깔끔하고 약간 밋밋한 담배 맛이 난다. 캡슐 터뜨리면 멘솔이 확 올라오는데, 코를 박살 내는 수준의 강멘솔은 아니고 입안이 적당히 서늘해지는 정도임. 단맛이나 과일 향이 강한 담배나 아니라서 향료 범벅 싫어하는 사람한테는 잘 맞을 듯.\n그리고 냄새 저감 담배라고 광고하는데 아예 냄새가 안 나는 건 당연히 아님. 담배는 담배라 옷이랑 손에는 냄새 남는다. 그래도 일반 연초보다는 피우고 난 뒤 입안이 덜 텁텁하고 끝맛이 비교적 깔끔한 편.\n단점은 오래 피우면 맛이 좀 심심할 수 있다는 거. 강한 타격감이나 달달한 캡슐 맛을 기대하면 노잼이고, 반대로 가볍고 무난한 멘솔 찾으면 꽤 괜찮음.\n총평\n멘솔감: 3.5/5\n타격감: 2/5\n깔끔함: 4/5\n단맛: 1.5/5\n재구매 의사: 4/5\n\n한 줄 요약:\n히말라야 정상급으로 강한 담배는 아닌데, 매일 피우기에는 무난한 냉장고 생수 같은 담배임.'
+
+let postsTable = JSON.parse(localStorage.getItem("postsTable"))
+if (postsTable == null){
+    postsTable = [{postID: 60000, userID: 'pepe01234', userNAME: '페페', postTitle: `에쎄 히말라야 후기`, postContent: `편의점에서 뭐 살지 고민하다가 이름이 겁나 웅장해서 사봄.
+        히말라야라길래 한 대 피우면 폐 속에 만년설 쌓이고 예티랑 하이파이브할 줄 알았는데, 실제로는 그냥 무난하게 시원한 1미리 에쎄임.
+        일단 담배가 얇아서 처음 보면 이쑤시개인가 싶다. 빨아보면 역시 1미리답게 타격감은 세지 않음. 평소에 굵은 담배나 고타르 피우던 사람은 “이거 불 붙은 거 맞냐?” 할 수도 있음.
+        캡슐 터뜨리기 전에는 깔끔하고 약간 밋밋한 담배 맛이 난다. 캡슐 터뜨리면 멘솔이 확 올라오는데, 코를 박살 내는 수준의 강멘솔은 아니고 입안이 적당히 서늘해지는 정도임. 단맛이나 과일 향이 강한 담배나 아니라서 향료 범벅 싫어하는 사람한테는 잘 맞을 듯.
+        그리고 냄새 저감 담배라고 광고하는데 아예 냄새가 안 나는 건 당연히 아님. 담배는 담배라 옷이랑 손에는 냄새 남는다. 그래도 일반 연초보다는 피우고 난 뒤 입안이 덜 텁텁하고 끝맛이 비교적 깔끔한 편.
+        단점은 오래 피우면 맛이 좀 심심할 수 있다는 거. 강한 타격감이나 달달한 캡슐 맛을 기대하면 노잼이고, 반대로 가볍고 무난한 멘솔 찾으면 꽤 괜찮음.
+        총평
+        멘솔감: 3.5/5
+        타격감: 2/5
+        깔끔함: 4/5
+        단맛: 1.5/5
+        재구매 의사: 4/5
+        
+        한 줄 요약:
+        히말라야 정상급으로 강한 담배는 아닌데, 매일 피우기에는 무난한 냉장고 생수 같은 담배임.`
         , thumbsUp: 206, thumbsDown: 58, listDay: '2026-07-31', reply: 4
     },
     {postID: 60001, userID: 'dsds31232', userNAME: '요네', postTitle: '[M3] 일본 면세점 담배 라인업 공유한다 (스압, 30장)', postContent: '', thumbsUp: 16, thumbsDown: 2, listDay: '2026-07-31', reply: 19},
@@ -80,7 +90,9 @@ let postsTable = [
     {postID: 60006, userID: 'windblue', userNAME: '징크스', postTitle: 'AI가 추천해주는 내 취향 딱 맞는 HNB 스틱 추천', postContent: '', thumbsUp: 4, thumbsDown: 2, listDay: '2026-07-31', reply: 3},
     {postID: 60007, userID: 'goldleaf', userNAME: '케인', postTitle: '[리뷰] Raison Ionia 블루베리 향, 실 구매 리얼 후기', postContent: '', thumbsUp: 7, thumbsDown: 2, listDay: '2026-07-29', reply: 1},
     {postID: 60008, userID: 'reviewking', userNAME: '가렌', postTitle: '초보자를 위한 시가 입문기', postContent: '', thumbsUp: 11, thumbsDown: 2, listDay: '2026-07-28', reply: 8},
-];
+    ];
+}
+
 // console.log(obj.text.slice(0, limitIndex));
 
 showHotPost()
