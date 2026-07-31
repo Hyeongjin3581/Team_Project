@@ -130,7 +130,7 @@ function a() {
     }
     let list = JSON.parse(localStorage.getItem('reviewTable') )
     if (list == null) { localStorage.setItem('reviewTable', JSON.stringify(reviewTable))}
-    if( list.length > reviewTable.length) { // 로컬스토리지의 길이가 더 길때 (업데이트 됐을때)
+    if( list.length > reviewTable.length) {
         for( let index = 0; index < list.length; index++){
             reviewTable[index] = list[index]
         }
