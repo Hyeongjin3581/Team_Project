@@ -113,8 +113,6 @@ function showHotPost(){
 }
 
 
-
-
 showPosts()
 function showPosts() {
     let postList = document.querySelector('.post-list');
