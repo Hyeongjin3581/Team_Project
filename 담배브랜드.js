@@ -58,30 +58,34 @@ let memberTable = [
 brandPrint('ㄷ')
 // 담배브랜드 목록 페이지 렌더링
 function brandPrint(param){
-    console.log(param) // ㄷ
-    let brandID;
-    let html = ''
+    console.log(param) // 기본값 : ㄷ
+    let brandID; // 초성이 ㄷ(기본값)으로 시작하는 브랜드명 ID 담을 지역변수
+    let html = '' // 브랜드에 맞는 담배 테이블 html 담을 지역변수
+
+    // 선택한 초성에 맞는 브랜드 ID 검사
     for(let i = 0; i <= brandTable.length - 1; i++){
         if (brandTable[i].initial == param) {
             brandID = brandTable[i].brandID
             html += `<td class="brandName">${brandTable[i].brandName}</td><td class="brandList">`
         }
     }
-    console.log(brandID) // 10003
+    console.log(brandID) // 기본값 : 10003 -> 던힐
     console.log(html) // <tr><td class="brandName">던힐</td><td class="brandList">
 
+    // 던힐 브랜드인 담배목록 출력하기
+    let html2 = ''
     for(let i = 0; i <= cigarTable.length - 1; i++){
-        let html2 = ''
         if (brandID == cigarTable[i].brandID){
             html2 += `<a href="cigar_detail.html?cigarID=${cigarTable[i].cigarID}">${cigarTable[i].cigarName}</a> <br /> <br/>`
         }
-
-        if(html2 == null){
-            html += '해당 브랜드의 담배 정보가 없습니다.'
-        } else {
-            html += html2
-        }
     }
+    // 목록에 아무것도 없다면?
+    if (html2 == '') {
+        html2 = '<span>해당 브랜드의 담배 정보가 없습니다.</span>'
+    }
+
+    // 담배 테이블에 반영하기 td태그 닫기
+    html += html2
     html += `</td>`
     console.log(html)
     document.querySelector('.brands tr').innerHTML = html

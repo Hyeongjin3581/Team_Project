@@ -61,21 +61,22 @@ printDetail()
 
 // 상세 페이지 새로고침(최신화)
 function printDetail() {
+    // URL 파라미터 가져오기 - 이 담배의 ID값
     let url = new URLSearchParams(location.search)
     console.log(url)
     let cigarID = url.get('cigarID')
     console.log(cigarID)
 
+    // 로컬 스토리지로 불러오기 - 대상 : 리뷰목록
     let reviewList = localStorage.getItem( 'reviewList' )
-
     if( reviewList == null){
         reviewList = reviewTable
-
     } else{
         reviewList = JSON.parse( reviewList )
     }
-    console.log(reviewList)
+    // console.log(reviewList)
 
+    // 담배 목록에서 ID 통해 알맞는 정보 뽑아오기
     for (let i = 0; i <= cigarTable.length - 1; i++) {
         if (cigarID == cigarTable[i].cigarID) {
             let price = cigarTable[i].price.toLocaleString()
@@ -87,7 +88,7 @@ function printDetail() {
         }
     }
 
-    // 담배 평균 평점 매기기
+    // 담배평점의 평균 매기기
     let score = 0;
     let reviewCount = 0;
     let html = ``
@@ -100,7 +101,7 @@ function printDetail() {
     }
     score = score / reviewCount;
 
-
+    // 경고문 display:none으로 되돌리기, 평균 평점 최신화, 리뷰 테이블 최신화, 리뷰 입력란 값 비우기
     document.querySelector('.warning').innerHTML = '<p style="display:none;"> 리뷰 내용을 작성하셔야 합니다. </p>'
     document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
     document.querySelector('.reviewTable').innerHTML = html
@@ -109,9 +110,10 @@ function printDetail() {
 
 // 리뷰 추가 후 새로고침
 function addReview() {
+    // URL 파라미터 가져오기 - 이 담배의 ID값
     let url = new URLSearchParams(location.search)
-    let cigarID = parseInt(url.get('cigarID'))
-
+    // let cigarID = parseInt(url.get('cigarID'))
+    let cigarID = url.get('cigarID')
     let reviewList = localStorage.getItem('reviewList')
 
     // 로컬 스토리지 불러오기(없으면 -> 디폴트 테이블 불러옴)
@@ -130,20 +132,20 @@ function addReview() {
     }
     let score = parseInt(document.querySelector('.buttonArea > .reviewScore').value)
 
+    // 리뷰 작성 시각 담아오기
     let year = new Date().getFullYear()
+    // 1~9시로 표시될 경우 앞에 0 붙이기
     let month = new Date().getMonth() < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth();
     let day = new Date().getDate()
     let listDay = `${year}-${month}-${day}`
 
-    let object = { cigarID, memberID: 40003, review, score, listDay }
+    //객체화
+    let object = { cigarID, memberID: 40003, review, score, listDay } 
+    //객체에 reviewID 추가
     object.reviewID = reviewList.length == 0 ? 1 : reviewList[reviewList.length - 1].reviewID + 1
-
-
-
-    // let object = { reviewID, cigarID, memberID: 40003, review, score, listDay }
-
+    
+    // 객체 붙이고 로컬 스토리지에 올리기
     reviewList.push(object)
-
     localStorage.setItem('reviewList', JSON.stringify(reviewList))
 
     printDetail()
