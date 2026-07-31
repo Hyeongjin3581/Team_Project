@@ -1,7 +1,6 @@
-/* 기본css */
 *{
-    box-sizing: border-box;  /* content+padding 포함 사이즈 정의 */
-    padding: 0px; margin: 0px; /* 기본 여백 제거 */
+    box-sizing: border-box;
+    padding: 0px; margin: 0px;
     font-family: 'HannaPro';
 }
 @font-face {
@@ -11,30 +10,11 @@
     font-display: swap;
 }
 a{
-    text-decoration: none;  /* 하이퍼링크 밑줄 제거 */
-    color: black; /* 하이퍼링크 색상 결정 */
-}
-/* 기본css */
-*{
-    box-sizing: border-box;  /* content+padding 포함 사이즈 정의 */
-    padding: 0px; margin: 0px; /* 기본 여백 제거 */
-    font-family: 'HannaPro';
-}
-@font-face {
-    font-family: 'HannaPro';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
-    font-weight: normal;
-    font-display: swap;
-}
-a{
-    text-decoration: none;  /* 하이퍼링크 밑줄 제거 */
-    color: black; /* 하이퍼링크 색상 결정 */
+    text-decoration: none;
+    color: black;
     padding: 0px;
 }
-li{ list-style-type: none;} /* li 항목 글머리 제거 */
-
-/* ==================== header =================== */
-
+li{ list-style-type: none;}
 
 .header1{
     display: flex;
@@ -73,7 +53,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     color: rgb(255, 150, 150);
 }
 
-
 #searchBox{
     position: relative;
     margin-right: 60px;
@@ -90,11 +69,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     height: 15px;
     bottom: 6px;
 }
-
-/*=======기본세팅 =========*/
-/* ====== 아래부터 형진 ======*/
-
-
 
 .header2{
     margin: 0px 0px ;
@@ -120,9 +94,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 .auth-menu{
     display: flex;
 }
-
-
-/* ==================== header end ================= */
 
 #h1{
     font-size: 60px;
@@ -155,16 +126,13 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     cursor: pointer;
 }
 
-
-/*==== mainbody ====*/
-
 .mainbody{
     background-color: #EEFBFF;
 }
 
 .main1 {
     display: flex;
-    justify-content: space-between; /* 양 끝 정렬로 변경 */
+    justify-content: space-between;
     align-items: flex-start;
     padding: 0 30px;
 }
@@ -216,7 +184,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     padding-top: 65px;
 }
 
-.up, .down {
+.up-btn, .down-btn {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -227,13 +195,12 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     font-weight: bold;
 }
 
-.up > img, .down > img {
+.up-btn > img, .down-btn > img {
     width: 25px;
     height: 25px;
     object-fit: contain;
 }
 
-/*==== main2 (게시물 보기 목록) ====*/
 .main2 {
     margin-top: 100px;
     padding: 0px 0px 0px 30px;
@@ -280,7 +247,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     align-items: center;
 }
 
-.item-right .like {
+.item-right .up-btn {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -294,7 +261,3 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 .item-right .user {
     width: 100px;
 }
-
-
-
-

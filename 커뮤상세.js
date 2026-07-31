@@ -2,42 +2,43 @@ function entireClick() {
     document.querySelector('.cigarRank').style.display = 'none';
     document.querySelector('.entireRank').style.display = 'block';
 
-    document.querySelector('.entireBtn').style.borderBottom = '2px solid black'
-    document.querySelector('.cigarBtn1').style.borderBottom = 'none'
-    document.querySelector('.cigarBtn2').style.borderBottom = 'none'
-    document.querySelector('.btn3').style.borderBottom = 'none'
+    document.querySelector('.entireBtn').style.borderBottom = '2px solid black';
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none';
+    document.querySelector('.btn3').style.borderBottom = 'none';
 }   
 
 function click2() {
     document.querySelector('.entireRank').style.display = 'none';
     document.querySelector('.cigarRank').style.display = 'block';
 
-    document.querySelector('.entireBtn').style.borderBottom = 'none'
-    document.querySelector('.cigarBtn1').style.borderBottom = '2px solid black'
-    document.querySelector('.cigarBtn2').style.borderBottom = 'none'
-    document.querySelector('.btn3').style.borderBottom = 'none'
+    document.querySelector('.entireBtn').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn1').style.borderBottom = '2px solid black';
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none';
+    document.querySelector('.btn3').style.borderBottom = 'none';
 }
 
 function click3() {
-    document.querySelector('.entireBtn').style.borderBottom = 'none'
-    document.querySelector('.cigarBtn1').style.borderBottom = 'none'
-    document.querySelector('.cigarBtn2').style.borderBottom = '2px solid black'
-    document.querySelector('.btn3').style.borderBottom = 'none'
+    document.querySelector('.entireBtn').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn2').style.borderBottom = '2px solid black';
+    document.querySelector('.btn3').style.borderBottom = 'none';
 }
 
 function click4() {
-    document.querySelector('.entireBtn').style.borderBottom = 'none'
-    document.querySelector('.cigarBtn1').style.borderBottom = 'none'
-    document.querySelector('.cigarBtn2').style.borderBottom = 'none'
-    document.querySelector('.btn3').style.borderBottom = '2px solid black'
+    document.querySelector('.entireBtn').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn1').style.borderBottom = 'none';
+    document.querySelector('.cigarBtn2').style.borderBottom = 'none';
+    document.querySelector('.btn3').style.borderBottom = '2px solid black';
 }
+
 let cigarTable = [
     { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
     { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
     { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
     { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
     { cigarID: 50004, brandID: 10003, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
-]
+];
 
 let reviewTable = [
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
@@ -52,7 +53,8 @@ let reviewTable = [
     { reviewID: 20009, cigarID: 50009, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
     { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
     { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
-]
+];
+
 let memberTable = [
     { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
     { MemberID: 40001, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/img/프사1.jpg' },
@@ -63,4 +65,94 @@ let memberTable = [
     { MemberID: 40006, userID: 'goldleaf', userPW: 'gold4321', userNAME: '케인', userPHOTO: '/img/프사6.jpg' },
     { MemberID: 40007, userID: 'reviewking', userPW: 'review99', userNAME: '가렌', userPHOTO: '/img/프사7.jpg' },
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/img/프사8.jpg' },
-]
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const upBtns = document.querySelectorAll('.up-btn');
+    const downBtns = document.querySelectorAll('.down-btn');
+    const cntUpList = document.querySelectorAll('.cnt-up');
+    const cntDownList = document.querySelectorAll('.cnt-down');
+
+    let hasVoted = false;
+
+    const disableAllButtons = () => {
+        hasVoted = true;
+        [...upBtns, ...downBtns].forEach(btn => {
+            btn.disabled = true;
+            btn.style.cursor = 'not-allowed';
+            btn.style.opacity = '0.4';
+        });
+    };
+
+    upBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (hasVoted) return;
+            cntUpList.forEach(span => {
+                let count = parseInt(span.textContent, 10) || 0;
+                span.textContent = count + 1;
+            });
+            disableAllButtons();
+        });
+    });
+
+    downBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (hasVoted) return;
+            cntDownList.forEach(span => {
+                let count = parseInt(span.textContent, 10) || 0;
+                span.textContent = count + 1;
+            });
+            disableAllButtons();
+        });
+    });
+
+    const CP = document.querySelector('.input');
+    const CB = document.querySelector('.comment');
+    const commentList = document.querySelector('.comment-list');
+
+    if (CB && CP && commentList) {
+        CB.addEventListener('click', () => {
+            const text = CP.value.trim();
+            if (!text) {
+                alert('댓글 내용을 입력해주세요.');
+                return;
+            }
+
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+            const CI = document.createElement('div');
+            CI.style.cssText = `
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 12px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                border: 1px solid #dcdcdc;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+                width: 100%;
+            `;
+
+            CI.innerHTML = `
+                <img src="img/프사1.jpg" alt="프로필" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                        <div>
+                            <strong style="font-size: 13px; color: #333; margin-right: 6px;">야스오</strong>
+                            <span style="font-size: 11px; color: #888;">${timeStr}</span>
+                        </div>
+                        <button class="del-btn" style="background: none; border: none; color: #999; cursor: pointer; font-size: 12px;">삭제</button>
+                    </div>
+                    <p class="txt" style="font-size: 14px; line-height: 1.4; color: #222; margin: 0; white-space: pre-wrap; word-break: break-all;"></p>
+                </div>
+            `;
+
+            CI.querySelector('.txt').textContent = text;
+            CI.querySelector('.del-btn').addEventListener('click', () => CI.remove());
+
+            commentList.appendChild(CI);
+            CP.value = '';
+        });
+    }
+});
