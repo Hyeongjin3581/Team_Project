@@ -70,6 +70,7 @@ function printDetail() {
 
     if( reviewList == null){
         reviewList = reviewTable
+
     } else{
         reviewList = JSON.parse( reviewList )
     }
@@ -111,7 +112,7 @@ function addReview() {
     let reviewList = localStorage.getItem('reviewList')
 
     if (reviewList == null) {
-        reviewList = []
+        reviewList = reviewTable
     } else {
         reviewList = JSON.parse(reviewList)
     }
