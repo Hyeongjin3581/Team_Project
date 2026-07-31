@@ -1,4 +1,7 @@
-let reviewTable = [
+let reviewTable = JSON.parse(localStorage.getItem("reviewTable"))
+
+if (reviewTable == null){
+    localStorage.setItem("reviewTable", JSON.stringify([
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
     { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
     { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
@@ -11,17 +14,12 @@ let reviewTable = [
     { reviewID: 20009, cigarID: 50006, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
     { reviewID: 20010, cigarID: 50008, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
     { reviewID: 20011, cigarID: 50010, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
-]
-
-let brandTable = [
-    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '에쎄', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '던힐', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '레종', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
-]
-
-let cigarTable = [
+        ])
+    ) 
+}
+let cigarTable = JSON.parse(localStorage.getItem("cigarTable"))
+if (cigarTable == null){
+    localStorage.setItem("cigarTable", JSON.stringify([
     { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price:4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg:'src/cigar.png'},
     { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
     { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
@@ -37,25 +35,9 @@ let cigarTable = [
     { cigarID: 50012, brandID: 30001, cigarName: '테리아 블루', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아블루.jpg' },
     { cigarID: 50013, brandID: 30001, cigarName: '테리아 블랙 옐로우', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: false, cigarImg: 'src/테리아블랙옐로우.jpg' },
     { cigarID: 50014, brandID: 30001, cigarName: '테리아 퍼플 웨이브', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/테리아퍼플웨이브.jpg' },
-]
-
-let listTable = [
-    { listID: 70000, MemberID: 40000, listTitle: ' ~ 후기', listContent: '그 담배요?', listDay: '2026-07-28', thumbsUp: 212, thumbsDown: 1231111111 },
-    { listID: 70001, MemberID: 40002, listTitle: '담배 추천좀', listContent: '제가 본 담배중', listDay: '2026-07-29', thumbsUp: 123, thumbsDown: 24 }
-]
-
-let memberTable = [
-    { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: '/img/페페담배.jpeg' },
-    { MemberID: 40001, userID: 'lilililil', userPW: 'dsae212', userNAME: '야스오', userPHOTO: '/src/img/' },
-    { MemberID: 40002, userID: 'wEqweqw232', userPW: '12341234', userNAME: '베인', userPHOTO: '/src/img/' },
-    { MemberID: 40003, userID: 'smoker01', userPW: 'qwer1234', userNAME: '아리', userPHOTO: '/src/img/' },
-    { MemberID: 40004, userID: 'mintcapsule', userPW: 'capsule12', userNAME: '티모', userPHOTO: '/src/img/' },
-    { MemberID: 40005, userID: 'windblue', userPW: 'pass5678', userNAME: '징크스', userPHOTO: '/src/img/' },
-    { MemberID: 40006, userID: 'goldleaf', userPW: 'gold4321', userNAME: '케인', userPHOTO: '/src/img/' },
-    { MemberID: 40007, userID: 'reviewking', userPW: 'review99', userNAME: '가렌', userPHOTO: '/src/img/' },
-    { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/src/img/' },
-]
-
+        ])
+    )
+}
 
 
 // 최근 리뷰에 맞는 html 생성 코드
@@ -135,23 +117,34 @@ function showRankCigar(){
     let cigarRank = document.querySelector('.cigarRank')
     let hTPRank = document.querySelector('.hTPRank')
 
-    // 새로운 테이블(담배 ID와 평균점수) 매핑
+    // 새로운 테이블(담배 ID와 평균점수 등)에 모든 담배를 차례대로 매핑
      let eachCigarAvgScore = cigarTable.map(cigar => {
+
+        // ========================================================================
+        // result에 리뷰테이블의 cigarID와 매핑될 cigarID만 찾아 그 객체 배열들을 선언
         let result = reviewTable.filter(item => item.cigarID == cigar.cigarID)
 
+        // result 객체배열의 점수만 다 더해서 반환된 값을 totalScore에 선언
         let totalScore = result.reduce((a, c) =>{
             return (a + c.score)
         }, 0)
+        // 다 더한 totalScore의 평균 값 avgScore에 선언
         let avgScore = totalScore / result.length
+        //=============== 생각해보니까 여기는 getScoreCigar()함수를 쓰면 됐음=============
 
+
+        //매핑될 반환 객체들
         return{
+            // 매핑될 때 사용한 cigar의 cigarID
             cigarID: cigar.cigarID,
+            // 매핑될 때 사용된 cigar의 cigarID를 cigarTable에서 찾아 cigarName을 갖고옴
             cigarName: cigarTable.find(item => item.cigarID == cigar.cigarID).cigarName,
+            //매핑될 때 사용된 cigar의 cigarID를 cigarTable에서 찾아 cigarImg를 갖고옴
             cigarImg: cigarTable.find(item=> item.cigarID == cigar.cigarID).cigarImg,
+            // 계산된 평균값
             avgScore: avgScore
         } 
      })
-     console.log(eachCigarAvgScore)
 
      // 평균점수가 높은 순서대로 정렬
      let highRankCigar = eachCigarAvgScore.sort((a, b) => b.avgScore - a.avgScore)
@@ -162,9 +155,6 @@ function showRankCigar(){
      }
 
      entireRank.innerHTML = html1;
-
-
-
 
 }
 
