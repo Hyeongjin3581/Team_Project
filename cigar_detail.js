@@ -109,10 +109,11 @@ function printDetail() {
         }
     }
     score = score / reviewCount;
-
+    console.log(html)
+    console.log(`평균점수: ${score}`)
     // 경고문 display:none으로 되돌리기, 평균 평점 최신화, 리뷰 테이블 최신화, 리뷰 입력란 값 비우기
     document.querySelector('.warning').innerHTML = '<p style="display:none;"> 리뷰 내용을 작성하셔야 합니다. </p>'
-    document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
+    document.querySelector('.cigarScore > span').innerHTML = html=='' ? '첫 리뷰를 달아주세요.' : `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
     document.querySelector('.reviewTable').innerHTML = html
     document.querySelector('.inputArea > textarea').value = null;
 }
