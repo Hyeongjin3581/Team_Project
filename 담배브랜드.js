@@ -14,19 +14,18 @@ let reviewTable = [
 ]
 
 let brandTable = [
-    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '에쎄', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '던힐', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '레종', brandLogo: '/src/img' },
-    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img' },
+    { brandID: 10001, brandName: '말보로', brandLogo: '/src/img', initial : 'ㅁ'},
+    { brandID: 10002, brandName: '에쎄', brandLogo: '/src/img', initial : 'ㅇ'  },
+    { brandID: 10003, brandName: '던힐', brandLogo: '/src/img', initial : 'ㄷ' },
+    { brandID: 10004, brandName: '레종', brandLogo: '/src/img', initial : 'ㄹ'},
 ]
 
 let cigarTable = [
-    { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
+    { cigarID: 50000, brandID: 10004, cigarName: '레종 블루', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
     { cigarID: 50001, brandID: 10002, cigarName: '에쎄 체인지 1mg', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/에쎄체인지1mg.jpg' },
-    { cigarID: 50002, brandID: 10001, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
+    { cigarID: 50002, brandID: 10004, cigarName: '이오니아 핑크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/이오니아핑크.jpg' },
     { cigarID: 50003, brandID: 10004, cigarName: '이오니아 그린', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar2.jpg' },
-    { cigarID: 50004, brandID: 10003, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
+    { cigarID: 50004, brandID: 10001, cigarName: '말보로 골드', price: 5000, nicotine: 0.4, tar: 6, isCapsule: false, cigarImg: 'src/말보로골드.jpg' },
     { cigarID: 50005, brandID: 20001, cigarName: '핏 체인지 유니크', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/핏체인지유니크.jpg' },
     { cigarID: 50006, brandID: 20001, cigarName: '핏 체인지 큐', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/핏체인지큐.jpg' },
     { cigarID: 50007, brandID: 20002, cigarName: '믹스 아이스 더블', price: 4800, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/믹스아이스더블.jpg' },
@@ -56,8 +55,38 @@ let memberTable = [
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: '/src/img/' },
 ]
 
-brandPrint()
+brandPrint('ㄷ')
 // 담배브랜드 목록 페이지 렌더링
-function brandPrint(){
+function brandPrint(param){
+    console.log(param) // 기본값 : ㄷ
+    let brandID; // 초성이 ㄷ(기본값)으로 시작하는 브랜드명 ID 담을 지역변수
+    let html = '' // 브랜드에 맞는 담배 테이블 html 담을 지역변수
 
+    // 선택한 초성에 맞는 브랜드 ID 검사
+    for(let i = 0; i <= brandTable.length - 1; i++){
+        if (brandTable[i].initial == param) {
+            brandID = brandTable[i].brandID
+            html += `<td class="brandName">${brandTable[i].brandName}</td><td class="brandList">`
+        }
+    }
+    console.log(brandID) // 기본값 : 10003 -> 던힐
+    console.log(html) // <tr><td class="brandName">던힐</td><td class="brandList">
+
+    // 던힐 브랜드인 담배목록 출력하기
+    let html2 = ''
+    for(let i = 0; i <= cigarTable.length - 1; i++){
+        if (brandID == cigarTable[i].brandID){
+            html2 += `<a href="cigar_detail.html?cigarID=${cigarTable[i].cigarID}">${cigarTable[i].cigarName}</a> <br /> <br/>`
+        }
+    }
+    // 목록에 아무것도 없다면?
+    if (html2 == '') {
+        html2 = '<span>해당 브랜드의 담배 정보가 없습니다.</span>'
+    }
+
+    // 담배 테이블에 반영하기 td태그 닫기
+    html += html2
+    html += `</td>`
+    console.log(html)
+    document.querySelector('.brands tr').innerHTML = html
 }

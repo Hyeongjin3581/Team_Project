@@ -110,11 +110,12 @@ a {
 /* ==========================[content end]============================================================================== */
 
 .content{
-    margin: 0px 30px 0px 30px;
+    padding: 0px 30px 30px 30px;
+    background-color: #EEFBFF;
 }
 .cigarInfo{
     display: flex;
-    margin-top: 50px;
+    padding-top: 50px;
 }
 
 .imgBox{
@@ -126,10 +127,10 @@ a {
     border: 1px solid #D9D9D9;
     border-radius: 10px;
     line-height: 450px;
+    background-color: white;
 }
 
 .imgBox>img{
-
     max-width: 400px;
     max-height: 400px;
     margin: 0 auto;
@@ -208,7 +209,8 @@ a {
 
 .reviewWrite>.title{
     margin: 10px;
-    font-size: 20px;
+    font-size: 20px; 
+    width: 100%;
 }
 
 .buttonArea{
