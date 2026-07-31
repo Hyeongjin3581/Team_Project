@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isUp = false;
     let isDown = false;
 
+    // 추천 버튼 로직
     if (btnUp && cntUp) {
         btnUp.addEventListener('click', () => {
             let count = parseInt(cntUp.textContent, 10);

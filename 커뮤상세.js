@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // 1. 추천 / 비추천 (1회 선택 제한 기능)
-    // ==========================================
+
     const cntUp = document.querySelector('#cntUp');
     const cntDown = document.querySelector('#cntDown');
 
@@ -43,22 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 이벤트 등록
+
     topBtnUp?.addEventListener('click', doUp);
     topBtnDown?.addEventListener('click', doDown);
     rsBtnUp?.addEventListener('click', doUp);
     rsBtnDown?.addEventListener('click', doDown);
 
-    // ==========================================
-    // 2. 댓글 목록 세로 누적 추가 기능
-    // ==========================================
-    const commentInput = document.querySelector('.input');
-    const commentBtn = document.querySelector('.comment');
-    const commentList = document.querySelector('.comment-list');
+    const cp = document.querySelector('.input');
+    const cb = document.querySelector('.comment');
+    const cl = document.querySelector('.comment-list');
 
-    if (commentBtn && commentInput && commentList) {
-        commentBtn.addEventListener('click', () => {
-            const text = commentInput.value.trim();
+    if (cb && cp && cl) {
+        cb.addEventListener('click', () => {
+            const text = cp.value.trim();
             if (!text) {
                 alert('댓글 내용을 입력해주세요.');
                 return;
@@ -69,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
             // 댓글 아이템 생성
-            const commentItem = document.createElement('div');
-            commentItem.style.cssText = `
+            const ci = document.createElement('div');
+            ci.style.cssText = `
                 display: flex;
                 align-items: flex-start;
                 gap: 12px;
@@ -82,8 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 width: 100%;
             `;
 
-            commentItem.innerHTML = `
-                <img src="img/프사1.jpg" alt="프로필" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+            // 댓글 작성 후 comment하면 출력. 
+            ci.innerHTML = `
+                <img src="img/프사1.jpg" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                         <div>
@@ -96,14 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            commentItem.querySelector('.txt').textContent = text;
-            commentItem.querySelector('.del-btn').addEventListener('click', () => commentItem.remove());
+            ci.querySelector('.txt').textContent = text;
+            ci.querySelector('.del-btn').addEventListener('click', () => ci.remove());
 
-            // ⭐ Comment 버튼 아래쪽에 차곡차곡 추가
-            commentList.appendChild(commentItem);
+            cl.appendChild(ci);
 
             // 입력창 초기화
-            commentInput.value = '';
+            cp.value = '';
         });
     }
 });
