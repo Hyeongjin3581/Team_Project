@@ -37,7 +37,7 @@ function click4() {
 
 
 /* ==========================================================================
-   2. 데이터베이스 테이블 역할 (기존 테이블 + 신규 커뮤니티 테이블)
+   2. 데이터베이스 테이블 역할 (cigarID 제거 및 30000번대 순차 ID 적용)
    ========================================================================== */
 let cigarTable = [
     { cigarID: 50000, brandID: 10002, cigarName: '레종 블루', price: 4500, nicotine: 0.1, tar: 0.1, isCapsule: true, cigarImg: 'src/cigar.png' },
@@ -59,12 +59,12 @@ let memberTable = [
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: 'img/프사8.jpg' },
 ];
 
-// 신규 커뮤니티 댓글 테이블 (기본 샘플 데이터)
+// cigarID 제거 완료 / 30000번대 순차 정수 ID 사용
 let commuTable = [
-    { commuID: 30000, cigarID: 50000, memberID: 40000, userNAME: '요네', userPHOTO: 'img/페페담배.jpeg', content: '한번 펴봤는데 그럭저럭 필만 하네요~', timeStr: '14:30', createdDay: '2026-07-01' },
-    { commuID: 30001, cigarID: 50001, memberID: 40002, userNAME: '베인', userPHOTO: 'img/프사2.jpg', content: '목 뚫리는줄', timeStr: '16:05', createdDay: '2026-07-28' },
-    { commuID: 30002, cigarID: 50002, memberID: 40005, userNAME: '징크스', userPHOTO: 'img/프사5.jpg', content: '노맛', timeStr: '18:22', createdDay: '2026-07-29' },
-    { commuID: 30003, cigarID: 50003, memberID: 40001, userNAME: '야스오', userPHOTO: 'img/프사1.jpg', content: '내 이전 작성글 테스트!', timeStr: '19:10', createdDay: '2026-07-30' },
+    { commuID: 30000, memberID: 40000, userNAME: '요네', userPHOTO: 'img/페페담배.jpeg', content: '한번 펴봤는데 그럭저럭 필만 하네요~', timeStr: '14:30', createdDay: '2026-07-01' },
+    { commuID: 30001, memberID: 40002, userNAME: '베인', userPHOTO: 'img/프사2.jpg', content: '목 뚫리는줄', timeStr: '16:05', createdDay: '2026-07-28' },
+    { commuID: 30002, memberID: 40005, userNAME: '징크스', userPHOTO: 'img/프사5.jpg', content: '노맛', timeStr: '18:22', createdDay: '2026-07-29' },
+    { commuID: 30003, memberID: 40001, userNAME: '야스오', userPHOTO: 'img/프사1.jpg', content: '내 이전 작성글 테스트!', timeStr: '19:10', createdDay: '2026-07-30' },
 ];
 
 
@@ -73,61 +73,84 @@ let commuTable = [
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- [1. 추천 / 비추천 투표 기능] --- */
-    const upBtns = document.querySelectorAll('.up-btn');
-    const downBtns = document.querySelectorAll('.down-btn');
-    const cntUpList = document.querySelectorAll('.cnt-up');
-    const cntDownList = document.querySelectorAll('.cnt-down');
-
-    let hasVoted = false;
-
-    const disableAllButtons = () => {
-        hasVoted = true;
-        [...upBtns, ...downBtns].forEach(btn => {
-            btn.disabled = true;
-            btn.style.cursor = 'not-allowed';
-            btn.style.opacity = '0.4';
-        });
-    };
-
-    upBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (hasVoted) return;
-            cntUpList.forEach(span => {
-                let count = parseInt(span.textContent, 10) || 0;
-                span.textContent = count + 1;
-            });
-            disableAllButtons();
-        });
-    });
-
-    downBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (hasVoted) return;
-            cntDownList.forEach(span => {
-                let count = parseInt(span.textContent, 10) || 0;
-                span.textContent = count + 1;
-            });
-            disableAllButtons();
-        });
-    });
-
-
-    /* --- [2. 본인 댓글 확인 및 삭제 권한 제어] --- */
     const CP = document.querySelector('.input');
     const CB = document.querySelector('.comment');
     const commentList = document.querySelector('.comment-list');
+    const replySpan = document.querySelector('.reply');
 
-    // 현재 로그인된 유저 세팅 (MemberID: 40001인 '야스오')
-    // 로그인 기능을 연동할 때 세션/쿠키/전역변수의 로그인 사용자 ID로 변경하면 됩니다.
+    // 현재 로그인 유저
     const currentMemberID = 40001; 
     const currentUser = memberTable.find(m => m.MemberID == currentMemberID) || {
-        MemberID: 99999,
-        userNAME: '익명',
+        MemberID: 40001,
+        userNAME: '야스오',
         userPHOTO: 'img/프사1.jpg'
     };
 
-    // localStorage 불러오기 / 저장하기
+    // --------------------------------------------------------------------------
+    // 1. 추천 / 비추천 데이터 불러오기 및 실시간 연동 처리
+    // --------------------------------------------------------------------------
+    const upBtns = document.querySelectorAll('.up-btn');
+    const downBtns = document.querySelectorAll('.down-btn');
+    const allUpSpans = document.querySelectorAll('.cnt-up');
+    const allDownSpans = document.querySelectorAll('.cnt-down');
+
+    // localStorage에서 최신 추천/비추천 값 로드 (없을 경우 기본값 206, 58)
+    let currentUp = localStorage.getItem('hotPostUp');
+    let currentDown = localStorage.getItem('hotPostDown');
+
+    if (currentUp === null) {
+        currentUp = 206;
+        localStorage.setItem('hotPostUp', currentUp);
+    } else {
+        currentUp = parseInt(currentUp, 10);
+    }
+
+    if (currentDown === null) {
+        currentDown = 58;
+        localStorage.setItem('hotPostDown', currentDown);
+    } else {
+        currentDown = parseInt(currentDown, 10);
+    }
+
+    // 모든 추천/비추천 span 숫자를 현재 저장된 값으로 렌더링
+    const renderCounts = () => {
+        allUpSpans.forEach(span => {
+            span.innerText = currentUp;
+        });
+        allDownSpans.forEach(span => {
+            span.innerText = currentDown;
+        });
+    };
+
+    // 초기 실행시 수치 맞춤
+    renderCounts();
+
+    // 추천 클릭 시: 상단/하단 모두 1 증가 & localStorage 저장
+    const updateAllUpCounts = () => {
+        currentUp += 1;
+        localStorage.setItem('hotPostUp', currentUp);
+        renderCounts();
+    };
+
+    // 비추천 클릭 시: 상단/하단 모두 1 증가 & localStorage 저장
+    const updateAllDownCounts = () => {
+        currentDown += 1;
+        localStorage.setItem('hotPostDown', currentDown);
+        renderCounts();
+    };
+
+    // 이벤트 리스너 연결
+    upBtns.forEach(btn => {
+        btn.addEventListener('click', updateAllUpCounts);
+    });
+
+    downBtns.forEach(btn => {
+        btn.addEventListener('click', updateAllDownCounts);
+    });
+
+    // --------------------------------------------------------------------------
+    // 2. localStorage 댓글 데이터 로드 및 저장
+    // --------------------------------------------------------------------------
     const getStoredCommuTable = () => {
         const stored = localStorage.getItem('commuList');
         return stored ? JSON.parse(stored) : null;
@@ -137,9 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('commuList', JSON.stringify(data));
     };
 
-    /**
-     * 댓글 렌더링 함수 (본인 ID 체크하여 삭제 버튼 생성 여부 결정)
-     */
+    // 댓글 수 [N] UI 업데이트
+    const updateReplyCountUI = () => {
+        if (replySpan) {
+            replySpan.innerHTML = `[${commuTable.length}]`;
+        }
+    };
+
+    // 댓글 DOM 생성 및 렌더링
     const renderComment = (item) => {
         const CI = document.createElement('div');
         CI.setAttribute('data-commu-id', item.commuID);
@@ -157,10 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             margin-bottom: 8px;
         `;
 
-        // 작성자 본인인지 확인 (Boolean)
         const isMyComment = (item.memberID == currentUser.MemberID);
-
-        // 본인 댓글일 때만 삭제 버튼 HTML 포함
         const deleteBtnHTML = isMyComment 
             ? `<button class="del-btn" style="background: none; border: none; color: #999; cursor: pointer; font-size: 12px;">삭제</button>` 
             : '';
@@ -179,36 +204,29 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // 보안(XSS 방지)을 위한 textContent 처리
         CI.querySelector('.txt').textContent = item.content;
 
-        // 본인 댓글인 경우 삭제 버튼 클릭 이벤트 등록
         if (isMyComment) {
             const delBtn = CI.querySelector('.del-btn');
             if (delBtn) {
-                delBtn.addEventListener('click', () => {
-                    // 한번 더 본인 검증 후 처리
-                    if (item.memberID !== currentUser.MemberID) {
+                delBtn.onclick = () => {
+                    if (item.memberID != currentUser.MemberID) {
                         alert('본인이 작성한 댓글만 삭제할 수 있습니다.');
                         return;
                     }
 
-                    // DOM 제거
                     CI.remove();
-
-                    // commuTable 배열에서 해당 항목 제거 후 localStorage 저장
                     commuTable = commuTable.filter(c => c.commuID != item.commuID);
                     setStoredCommuTable(commuTable);
-                });
+                    updateReplyCountUI();
+                };
             }
         }
 
         commentList.appendChild(CI);
     };
 
-    /**
-     * [초기화] localStorage 데이터 동기화 및 출력
-     */
+    // 댓글 목록 초기화
     const initCommuList = () => {
         if (!commentList) return;
 
@@ -220,15 +238,16 @@ document.addEventListener('DOMContentLoaded', () => {
             setStoredCommuTable(commuTable);
         }
 
+        commentList.innerHTML = '';
         commuTable.forEach(item => renderComment(item));
+        updateReplyCountUI();
     };
 
-    // 초기 댓글 목록 렌더링
     initCommuList();
 
-    // --- [댓글 등록 처리] ---
+    // 댓글 작성 이벤트 처리
     if (CB && CP && commentList) {
-        CB.addEventListener('click', () => {
+        CB.onclick = () => {
             const text = CP.value.trim();
 
             if (!text) {
@@ -239,11 +258,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const now = new Date();
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-            // 현재 로그인 유저의 MemberID가 부여된 새 커뮤니티 데이터
+            // 30000번대 이후 순차 증가 정수 ID 계산
+            const numericIDs = commuTable
+                .map(c => Number(c.commuID))
+                .filter(id => !isNaN(id) && id >= 30000);
+
+            const nextCommuID = numericIDs.length > 0 
+                ? Math.max(...numericIDs) + 1 
+                : 30000;
+
             const newCommuRecord = {
-                commuID: Date.now(),
-                cigarID: 50000,
-                memberID: currentUser.MemberID,  // 현재 로그인 회원 ID 입력
+                commuID: nextCommuID,
+                memberID: currentUser.MemberID,
                 userNAME: currentUser.userNAME,
                 userPHOTO: currentUser.userPHOTO,
                 content: text,
@@ -251,14 +277,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 createdDay: now.toISOString().split('T')[0]
             };
 
-            // 메모리 배열 및 localStorage 업데이트
             commuTable.push(newCommuRecord);
             setStoredCommuTable(commuTable);
 
-            // 화면에 댓글 추가 (본인이 작성한 댓글이므로 삭제 버튼 표시)
             renderComment(newCommuRecord);
+            updateReplyCountUI();
 
             CP.value = '';
-        });
+        };
     }
 });
