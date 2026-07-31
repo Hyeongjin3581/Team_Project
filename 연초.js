@@ -141,3 +141,40 @@ function a() {
     }
 }
 a()
+
+showRankCigar()
+function showRankCigar(){
+
+    let html1 = ''; let html2 = ''; let html3 = '';
+    let entireRank = document.querySelector('.entireRank')
+    let cigarRank = document.querySelector('.cigarRank')
+    let hTPRank = document.querySelector('.hTPRank')
+
+    // 새로운 테이블(담배 ID와 평균점수) 매핑
+     let eachCigarAvgScore = cigarTable.map(cigar => {
+        let result = reviewTable.filter(item => item.cigarID == cigar.cigarID)
+
+        let totalScore = result.reduce((a, c) =>{
+            return (a + c.score)
+        }, 0)
+        let avgScore = totalScore / result.length
+
+        return{
+            cigarID: cigar.cigarID,
+            cigarName: cigarTable.find(item => item.cigarID == cigar.cigarID).cigarName,
+            cigarImg: cigarTable.find(item=> item.cigarID == cigar.cigarID).cigarImg,
+            avgScore: avgScore
+        } 
+     })
+     console.log(eachCigarAvgScore)
+
+     // 평균점수가 높은 순서대로 정렬
+     let highRankCigar = eachCigarAvgScore.sort((a, b) => b.avgScore - a.avgScore)
+
+     html1 += `<ul>`
+     for (let index = 0; index < 5; index++){
+        html1 += `<li onclick="location.href='cigar_detail.html?cigarID=${highRankCigar[index].cigarID}'">${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span id="star">★</span> ${highRankCigar[index].avgScore}</div></li>`
+     }
+
+     entireRank.innerHTML = html1;
+}
