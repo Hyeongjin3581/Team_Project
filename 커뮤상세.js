@@ -151,21 +151,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------------
     // 2. localStorage 댓글 데이터 로드 및 저장
     // --------------------------------------------------------------------------
-    const getStoredCommuTable = () => {
-        const stored = localStorage.getItem('commuList');
-        return stored ? JSON.parse(stored) : null;
-    };
 
-    const setStoredCommuTable = (data) => {
-        localStorage.setItem('commuList', JSON.stringify(data));
-    };
 
-    // 댓글 수 [N] UI 업데이트
-    const updateReplyCountUI = () => {
-        if (replySpan) {
-            replySpan.innerHTML = `[${commuTable.length}]`;
-        }
-    };
+// 1. localStorage에서 저장된 댓글 데이터 불러오기 (없으면 null)
+const getStoredCommuTable = () => {
+    const stored = localStorage.getItem('commuList');
+    return stored ? JSON.parse(stored) : null;
+};
+
+// 2. localStorage에 댓글 데이터 저장하기 (배열 -> 문자열 변환)
+const setStoredCommuTable = (data) => {
+    localStorage.setItem('commuList', JSON.stringify(data));
+};
+
+// 3. localStorage 기준 댓글 수 [N] UI 업데이트
+const updateReplyCountUI = () => {
+    if (replySpan) {
+        // localStorage에서 현재 저장된 댓글 데이터를 가져옵니다.
+        const currentData = getStoredCommuTable() || commuTable;
+        replySpan.innerHTML = `[${currentData.length}]`;
+    }
+};
+
+
 
     // 댓글 DOM 생성 및 렌더링
     const renderComment = (item) => {
