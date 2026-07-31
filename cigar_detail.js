@@ -77,7 +77,7 @@ function printDetail() {
     console.log(cigarID)
 
     // 로컬 스토리지로 불러오기 - 대상 : 리뷰목록
-    let reviewList = localStorage.getItem( 'reviewList' )
+    let reviewList = localStorage.getItem( 'reviewTable' )
     if( reviewList == null){
         reviewList = reviewTable
     } else{
@@ -124,7 +124,7 @@ function addReview() {
     let url = new URLSearchParams(location.search)
     // let cigarID = parseInt(url.get('cigarID'))
     let cigarID = url.get('cigarID')
-    let reviewList = localStorage.getItem('reviewList')
+    let reviewList = localStorage.getItem('reviewTable')
 
     // 로컬 스토리지 불러오기(없으면 -> 디폴트 테이블 불러옴)
     if (reviewList == null) {
@@ -156,7 +156,7 @@ function addReview() {
     
     // 객체 붙이고 로컬 스토리지에 올리기
     reviewList.push(object)
-    localStorage.setItem('reviewList', JSON.stringify(reviewList))
+    localStorage.setItem('reviewTable', JSON.stringify(reviewList))
 
     printDetail()
 }
