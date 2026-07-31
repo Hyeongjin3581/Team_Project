@@ -58,8 +58,6 @@ let memberTable = [
     { MemberID: 40007, userID: 'reviewking', userPW: 'review99', userNAME: '가렌', userPHOTO: 'img/프사7.jpg' },
     { MemberID: 40008, userID: 'cloudsmoke', userPW: 'smoke777', userNAME: '럭스', userPHOTO: 'img/프사8.jpg' },
 ];
-
-// cigarID 제거 완료 / 30000번대 순차 정수 ID 사용
 let commuTable = [
     { commuID: 30000, memberID: 40000, userNAME: '요네', userPHOTO: 'img/페페담배.jpeg', content: '한번 펴봤는데 그럭저럭 필만 하네요~', timeStr: '14:30', createdDay: '2026-07-01' },
     { commuID: 30001, memberID: 40002, userNAME: '베인', userPHOTO: 'img/프사2.jpg', content: '목 뚫리는줄', timeStr: '16:05', createdDay: '2026-07-28' },
@@ -152,28 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. localStorage 댓글 데이터 로드 및 저장
     // --------------------------------------------------------------------------
 
+    // 1. localStorage에서 저장된 댓글 데이터 불러오기 (없으면 null)
+    const getStoredCommuTable = () => {
+        const stored = localStorage.getItem('commuList');
+        return stored ? JSON.parse(stored) : null;
+    };
 
-// 1. localStorage에서 저장된 댓글 데이터 불러오기 (없으면 null)
-const getStoredCommuTable = () => {
-    const stored = localStorage.getItem('commuList');
-    return stored ? JSON.parse(stored) : null;
-};
+    // 2. localStorage에 댓글 데이터 저장하기 (배열 -> 문자열 변환)
+    const setStoredCommuTable = (data) => {
+        localStorage.setItem('commuList', JSON.stringify(data));
+    };
 
-// 2. localStorage에 댓글 데이터 저장하기 (배열 -> 문자열 변환)
-const setStoredCommuTable = (data) => {
-    localStorage.setItem('commuList', JSON.stringify(data));
-};
-
-// 3. localStorage 기준 댓글 수 [N] UI 업데이트
-const updateReplyCountUI = () => {
-    if (replySpan) {
-        // localStorage에서 현재 저장된 댓글 데이터를 가져옵니다.
-        const currentData = getStoredCommuTable() || commuTable;
-        replySpan.innerHTML = `[${currentData.length}]`;
-    }
-};
-
-
+    // 3. localStorage 기준 댓글 수 [N] UI 업데이트
+    const updateReplyCountUI = () => {
+        if (replySpan) {
+            const currentData = getStoredCommuTable() || commuTable;
+            replySpan.innerHTML = `[${currentData.length}]`;
+        }
+    };
 
     // 댓글 DOM 생성 및 렌더링
     const renderComment = (item) => {
@@ -198,6 +192,7 @@ const updateReplyCountUI = () => {
             ? `<button class="del-btn" style="background: none; border: none; color: #999; cursor: pointer; font-size: 12px;">삭제</button>` 
             : '';
 
+        // innerHTML 하나로 댓글 내용(item.content)까지 함께 주입
         CI.innerHTML = `
             <img src="${item.userPHOTO}" alt="프로필" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
             <div style="flex: 1;">
@@ -208,11 +203,9 @@ const updateReplyCountUI = () => {
                     </div>
                     ${deleteBtnHTML}
                 </div>
-                <p class="txt" style="font-size: 14px; line-height: 1.4; color: #222; margin: 0; white-space: pre-wrap; word-break: break-all;"></p>
+                <p class="txt" style="font-size: 14px; line-height: 1.4; color: #222; margin: 0; white-space: pre-wrap; word-break: break-all;">${item.content}</p>
             </div>
         `;
-
-        CI.querySelector('.txt').textContent = item.content;
 
         if (isMyComment) {
             const delBtn = CI.querySelector('.del-btn');
@@ -295,5 +288,3 @@ const updateReplyCountUI = () => {
         };
     }
 });
-
-localStorage.clear();
