@@ -87,6 +87,7 @@ function printDetail() {
         }
     }
 
+    // 담배 평균 평점 매기기
     let score = 0;
     let reviewCount = 0;
     let html = ``
@@ -98,6 +99,8 @@ function printDetail() {
         }
     }
     score = score / reviewCount;
+
+
     document.querySelector('.warning').innerHTML = '<p style="display:none;"> 리뷰 내용을 작성하셔야 합니다. </p>'
     document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
     document.querySelector('.reviewTable').innerHTML = html
@@ -111,6 +114,7 @@ function addReview() {
 
     let reviewList = localStorage.getItem('reviewList')
 
+    // 로컬 스토리지 불러오기(없으면 -> 디폴트 테이블 불러옴)
     if (reviewList == null) {
         reviewList = reviewTable
     } else {
@@ -118,8 +122,9 @@ function addReview() {
     }
     console.log(reviewList)
 
+    // 리뷰 코멘트 검사
     let review = document.querySelector('.inputArea > textarea').value
-    if (review == '') {
+    if (review == '') { // 리뷰 내용이 비어있는 채로 전달됐다면?
         document.querySelector('.warning').innerHTML = '<p style="display:relative;"> 리뷰 내용을 작성하셔야 합니다. </p>'
         return;
     }
