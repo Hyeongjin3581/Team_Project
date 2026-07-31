@@ -1,7 +1,6 @@
-/* 기본css */
 *{
-    box-sizing: border-box;  /* content+padding 포함 사이즈 정의 */
-    padding: 0px; margin: 0px; /* 기본 여백 제거 */
+    box-sizing: border-box;
+    padding: 0px; margin: 0px;
     font-family: 'HannaPro';
 }
 @font-face {
@@ -11,14 +10,11 @@
     font-display: swap;
 }
 a{
-    text-decoration: none;  /* 하이퍼링크 밑줄 제거 */
-    color: black; /* 하이퍼링크 색상 결정 */
+    text-decoration: none;
+    color: black;
     padding: 0px;
 }
-li{ list-style-type: none;} /* li 항목 글머리 제거 */
-
-/* ==================== header =================== */
-
+li{ list-style-type: none;}
 
 .header1{
     display: flex;
@@ -44,7 +40,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
 }
 
 #mainMenu>li{
-
     margin: 0px 50px 0px 40px;
 }
 
@@ -94,13 +89,9 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     color: rgb(255, 150, 150);
 }
 
-
-/* ==================== header end ================= */
-
 .mainbody{
     background-color: #EEFBFF;
 }
-
 
 #imgPepe {
     display: flex;
@@ -133,7 +124,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     padding-right: 250px;
 }
 
-.like-buttons .up, .like-buttons .down {
+.like-buttons .up-btn, .like-buttons .down-btn {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -141,6 +132,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     border: none;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .like-buttons {
@@ -149,12 +141,11 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     gap: 15px; 
 }
 
-.up > img, .down > img {
+.up-btn > img, .down-btn > img {
     width: 50px;
     height: 50px;
     object-fit: contain;
 }
-
 
 .t{
     text-align: left;
@@ -162,9 +153,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     padding-left: 80px;
     padding-right: 20px;
 }
-
-
-/*===== main2 =====*/
 
 .one {
     border: 1px solid black;
@@ -183,7 +171,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     border-top: 1px solid #cce8f4;
 }
 
-/* 댓글 입력박스 + 댓글목록 전체 컨테이너 */
 .section {
     flex: 1;
     display: flex;
@@ -202,7 +189,6 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     resize: vertical;
 }
 
-/* 개추/비추 버튼 영역 */
 .rs {
     background-color: transparent;
     display: flex;
@@ -219,6 +205,7 @@ li{ list-style-type: none;} /* li 항목 글머리 제거 */
     cursor: pointer;
     display: flex;
     align-items: center;
+    gap: 4px;
 }
 
 .rs button img {
