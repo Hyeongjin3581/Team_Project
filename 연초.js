@@ -41,17 +41,23 @@ let cigarTable = [
 
 let reviewTable = [
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
-    { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
-    { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20001, cigarID: 50001, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
+    { reviewID: 20002, cigarID: 50002, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
     { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20006, cigarID: 50001, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20007, cigarID: 50003, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20008, cigarID: 50004, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
-    { reviewID: 20009, cigarID: 50006, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
-    { reviewID: 20010, cigarID: 50008, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
-    { reviewID: 20011, cigarID: 50010, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20004, cigarID: 50004, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20005, cigarID: 50005, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20006, cigarID: 50006, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20007, cigarID: 50007, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20008, cigarID: 50008, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
+    { reviewID: 20009, cigarID: 50009, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
+    { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
+    { reviewID: 20011, cigarID: 50011, memberID: 40003, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20012, cigarID: 50012, memberID: 40001, review: '연무량도 괜찮고 맛도 깔끔함.', score: 5, listDay: '2026-07-18' },
+    { reviewID: 20013, cigarID: 50013, memberID: 40004, review: '무난하긴 한데 조금 심심한 맛.', score: 3, listDay: '2026-07-21' },
+    { reviewID: 20014, cigarID: 50014, memberID: 40002, review: '퍼플 캡슐 향이 생각보다 괜찮음.', score: 4, listDay: '2026-07-25' },
+    { reviewID: 20015, cigarID: 50005, memberID: 40008, review: '계속 손이 가는 맛이라 자주 핌.', score: 5, listDay: '2026-07-26' },
+    { reviewID: 20016, cigarID: 50009, memberID: 40006, review: '향은 좋은데 가격이 조금 아쉬움.', score: 4, listDay: '2026-07-28' },
+    { reviewID: 20017, cigarID: 50011, memberID: 40007, review: '기대보단 평범했지만 나쁘진 않음.', score: 3, listDay: '2026-07-30' },
 ]
 let memberTable = [
     { MemberID: 40000, userID: 'dsds31232', userPW: '2134122', userNAME: '요네', userPHOTO: 'img/페페담배.jpeg' },
@@ -122,16 +128,26 @@ function a() {
                     }
                     
     }
+    let list = JSON.parse(localStorage.getItem('reviewTable') )
+    if (list == null) { localStorage.setItem('reviewTable', JSON.stringify(reviewTable))}
+    if( list.length > reviewTable.length) { // 로컬스토리지의 길이가 더 길때 (업데이트 됐을때)
+        for( let index = 0; index < list.length; index++){
+            reviewTable[index] = list[index]
+        }
+    }
+    console.log(reviewTable)
     document.querySelector('#main').innerHTML = html
+    let table = []
+    for(let w = 0; w < reviewTable.length; w++){ table[w] = reviewTable[w] }
     for(let r = 0; r < cigarTable.length; r++){
         let review = 0
         let result = 0
         let count = 0
-        for(let m = 0; m < reviewTable.length; m++){
-            if(cigarTable[r].cigarID == reviewTable[m].cigarID){
+        for(let m = 0; m < table.length; m++){
+            if(cigarTable[r].cigarID == table[m].cigarID){
                 review++
                 count++
-                result += reviewTable[m].score
+                result += table[m].score
             }
         }
         result = result / count
@@ -141,6 +157,9 @@ function a() {
     }
 }
 a()
+
+
+// 랭킹
 showRankCigar()
 function showRankCigar(){
 

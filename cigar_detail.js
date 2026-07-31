@@ -3,17 +3,17 @@ let reviewTable = JSON.parse(localStorage.getItem("reviewTable"))
 if (reviewTable == null){
     localStorage.setItem("reviewTable", JSON.stringify([
     { reviewID: 20000, cigarID: 50000, memberID: 40000, review: '한번 펴봤는데 그럭저럭 필만 하네요~', score: 4, listDay: '2026-07-01' },
-    { reviewID: 20001, cigarID: 50002, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
-    { reviewID: 20002, cigarID: 50001, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20001, cigarID: 50001, memberID: 40002, review: '목 뚫리는줄', score: 2, listDay: '2026-07-28' },
+    { reviewID: 20002, cigarID: 50002, memberID: 40005, review: '노맛', score: 1, listDay: '2026-07-29' },
     { reviewID: 20003, cigarID: 50003, memberID: 40003, review: '뭔지모름', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20004, cigarID: 50001, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20005, cigarID: 50003, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20006, cigarID: 50001, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
-    { reviewID: 20007, cigarID: 50003, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
-    { reviewID: 20008, cigarID: 50004, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
-    { reviewID: 20009, cigarID: 50006, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
-    { reviewID: 20010, cigarID: 50008, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
-    { reviewID: 20011, cigarID: 50010, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
+    { reviewID: 20004, cigarID: 50004, memberID: 40005, review: '이걸 왜핌?', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20005, cigarID: 50005, memberID: 40003, review: '내 인생픽', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20006, cigarID: 50006, memberID: 40005, review: '금연하고싶을 때 이거 피셈 ㅇㅇ', score: 1, listDay: '2026-07-29' },
+    { reviewID: 20007, cigarID: 50007, memberID: 40003, review: '4500원을 버리고 싶으면 사라', score: 1, listDay: '2026-07-12' },
+    { reviewID: 20008, cigarID: 50008, memberID: 40006, review: '무난하게 데일리로 피기 좋음.', score: 4, listDay: '2026-07-20' },
+    { reviewID: 20009, cigarID: 50009, memberID: 40007, review: '캡슐 터뜨리면 시원해서 만족.', score: 5, listDay: '2026-07-24' },
+    { reviewID: 20010, cigarID: 50010, memberID: 40008, review: '순해서 입문용으로 괜찮네요.', score: 4, listDay: '2026-07-27' },
+    { reviewID: 20011, cigarID: 50011, memberID: 40009, review: '향은 좋은데 재구매는 고민됨.', score: 3, listDay: '2026-07-30' },
         ])
     ) 
 }
@@ -77,7 +77,7 @@ function printDetail() {
     console.log(cigarID)
 
     // 로컬 스토리지로 불러오기 - 대상 : 리뷰목록
-    let reviewList = localStorage.getItem( 'reviewList' )
+    let reviewList = localStorage.getItem( 'reviewTable' )
     if( reviewList == null){
         reviewList = reviewTable
     } else{
@@ -109,10 +109,11 @@ function printDetail() {
         }
     }
     score = score / reviewCount;
-
+    console.log(html)
+    console.log(`평균점수: ${score}`)
     // 경고문 display:none으로 되돌리기, 평균 평점 최신화, 리뷰 테이블 최신화, 리뷰 입력란 값 비우기
     document.querySelector('.warning').innerHTML = '<p style="display:none;"> 리뷰 내용을 작성하셔야 합니다. </p>'
-    document.querySelector('.cigarScore > span').innerHTML = `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
+    document.querySelector('.cigarScore > span').innerHTML = html=='' ? '첫 리뷰를 달아주세요.' : `이 담배의 평균 평점:  <span id="star">★</span> ${score.toFixed(1)}/5`
     document.querySelector('.reviewTable').innerHTML = html
     document.querySelector('.inputArea > textarea').value = null;
 }
@@ -123,7 +124,7 @@ function addReview() {
     let url = new URLSearchParams(location.search)
     // let cigarID = parseInt(url.get('cigarID'))
     let cigarID = url.get('cigarID')
-    let reviewList = localStorage.getItem('reviewList')
+    let reviewList = localStorage.getItem('reviewTable')
 
     // 로컬 스토리지 불러오기(없으면 -> 디폴트 테이블 불러옴)
     if (reviewList == null) {
@@ -155,7 +156,7 @@ function addReview() {
     
     // 객체 붙이고 로컬 스토리지에 올리기
     reviewList.push(object)
-    localStorage.setItem('reviewList', JSON.stringify(reviewList))
+    localStorage.setItem('reviewTable', JSON.stringify(reviewList))
 
     printDetail()
 }
