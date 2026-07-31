@@ -126,16 +126,26 @@ function a() {
                     }
                     
     }
+    let list = JSON.parse(localStorage.getItem('reviewTable') )
+    if (list == null) { localStorage.setItem('reviewTable', JSON.stringify(reviewTable))}
+    if( list.length > reviewTable.length) { // 로컬스토리지의 길이가 더 길때 (업데이트 됐을때)
+        for( let index = 0; index < list.length; index++){
+            reviewTable[index] = list[index]
+        }
+    }
+    console.log(reviewTable)
     document.querySelector('#main').innerHTML = html
+    let table = []
+    for(let w = 0; w < reviewTable.length; w++){ table[w] = reviewTable[w] }
     for(let r = 0; r < cigarTable.length; r++){
         let review = 0
         let result = 0
         let count = 0
-        for(let m = 0; m < reviewTable.length; m++){
-            if(cigarTable[r].cigarID == reviewTable[m].cigarID){
+        for(let m = 0; m < table.length; m++){
+            if(cigarTable[r].cigarID == table[m].cigarID){
                 review++
                 count++
-                result += reviewTable[m].score
+                result += table[m].score
             }
         }
         result = result / count
@@ -145,7 +155,6 @@ function a() {
     }
 }
 a()
-
 showRankCigar()
 function showRankCigar(){
 
@@ -188,7 +197,7 @@ function showRankCigar(){
 
      html1 += `<ul>`
      for (let index = 0; index < 5; index++){
-        html1 += `<li onclick="location.href='cigar_detail.html?cigarID=${highRankCigar[index].cigarID}'">${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span class="star">★</span> ${highRankCigar[index].avgScore}</div></li>`
+        html1 += `<li onclick="location.href='cigar_detail.html?cigarID=${highRankCigar[index].cigarID}'">${index+1}. <div class="rankImg"><img src="${highRankCigar[index].cigarImg}"></div> ${highRankCigar[index].cigarName} <div class="rankRating"> <span class="star">★</span> ${(highRankCigar[index].avgScore).toFixed(1)}</div></li>`
      }
 
      entireRank.innerHTML = html1;
